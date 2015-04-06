@@ -1,0 +1,8 @@
+{
+  "require-dev": {
+    "phpunit/phpunit": "4.6.*"
+  },
+  "require": {
+    "league/csv": "7.0.*@dev"
+  }
+}
