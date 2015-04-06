@@ -37,3 +37,6 @@ dwsync.xml
 intermediate
 .idea
 cache
+
+# Ignore Composer directory
+/vendor/
