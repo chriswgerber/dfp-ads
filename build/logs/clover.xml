@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1428372827">
+  <project timestamp="1428372827">
+    <file name="/vagrant/www/wp-dev/htdocs/wp-content/plugins/dfp-ads/inc/class.dfp_ads.php">
+      <class name="DFP_Ads" namespace="global" fullPackage="WordPress.DFP" package="WordPress" subpackage="DFP">
+        <metrics methods="8" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="44" coveredstatements="2" elements="52" coveredelements="3"/>
+      </class>
+      <line num="86" type="method" name="set_account_id" crap="2" count="1"/>
+      <line num="87" type="stmt" count="1"/>
+      <line num="89" type="stmt" count="1"/>
+      <line num="100" type="method" name="set_targeting" crap="2" count="0"/>
+      <line num="101" type="stmt" count="0"/>
+      <line num="103" type="stmt" count="0"/>
+      <line num="105" type="stmt" count="0"/>
+      <line num="107" type="stmt" count="0"/>
+      <line num="108" type="stmt" count="0"/>
+      <line num="113" type="method" name="send_ads_to_js" crap="2" count="0"/>
+      <line num="115" type="stmt" count="0"/>
+      <line num="117" type="stmt" count="0"/>
+      <line num="118" type="stmt" count="0"/>
+      <line num="119" type="stmt" count="0"/>
+      <line num="120" type="stmt" count="0"/>
+      <line num="122" type="stmt" count="0"/>
+      <line num="133" type="method" name="get_page_targeting" crap="6" count="0"/>
+      <line num="134" type="stmt" count="0"/>
+      <line num="135" type="stmt" count="0"/>
+      <line num="146" type="method" name="get_category_targeting" crap="12" count="0"/>
+      <line num="147" type="stmt" count="0"/>
+      <line num="148" type="stmt" count="0"/>
+      <line num="150" type="stmt" count="0"/>
+      <line num="151" type="stmt" count="0"/>
+      <line num="152" type="stmt" count="0"/>
+      <line num="153" type="stmt" count="0"/>
+      <line num="154" type="stmt" count="0"/>
+      <line num="155" type="stmt" count="0"/>
+      <line num="166" type="method" name="get_tag_targeting" crap="20" count="0"/>
+      <line num="167" type="stmt" count="0"/>
+      <line num="168" type="stmt" count="0"/>
+      <line num="169" type="stmt" count="0"/>
+      <line num="170" type="stmt" count="0"/>
+      <line num="171" type="stmt" count="0"/>
+      <line num="172" type="stmt" count="0"/>
+      <line num="173" type="stmt" count="0"/>
+      <line num="174" type="stmt" count="0"/>
+      <line num="175" type="stmt" count="0"/>
+      <line num="186" type="method" name="scripts_and_styles" crap="2" count="0"/>
+      <line num="188" type="stmt" count="0"/>
+      <line num="189" type="stmt" count="0"/>
+      <line num="190" type="stmt" count="0"/>
+      <line num="191" type="stmt" count="0"/>
+      <line num="192" type="stmt" count="0"/>
+      <line num="194" type="stmt" count="0"/>
+      <line num="196" type="stmt" count="0"/>
+      <line num="198" type="stmt" count="0"/>
+      <line num="199" type="stmt" count="0"/>
+      <line num="200" type="stmt" count="0"/>
+      <line num="210" type="method" name="shortcode" crap="2" count="0"/>
+      <line num="211" type="stmt" count="0"/>
+      <line num="212" type="stmt" count="0"/>
+      <metrics loc="213" ncloc="83" classes="1" methods="8" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="44" coveredstatements="2" elements="52" coveredelements="3"/>
+    </file>
+    <metrics files="1" loc="213" ncloc="83" classes="1" methods="8" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="44" coveredstatements="2" elements="52" coveredelements="3"/>
+  </project>
+</coverage>
