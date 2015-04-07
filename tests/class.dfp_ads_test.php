@@ -3,7 +3,7 @@
  * DFP Ads Test Class
  * @see DFP_Ads
  */
-require ("inc/class.dfp_ads.php");
+require ('inc/class.dfp_ads.php');
 
 class Test_DFP_Ads extends PHPUnit_Framework_TestCase {
 
