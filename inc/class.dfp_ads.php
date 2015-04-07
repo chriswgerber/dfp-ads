@@ -50,7 +50,7 @@ Class DFP_Ads {
 	public $positions;
 
 	/**
-	 * Sets page level targetting
+	 * Sets page level targeting
 	 *
 	 * @access public
 	 * @since 0.0.1

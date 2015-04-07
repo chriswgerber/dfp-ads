@@ -10,6 +10,8 @@
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  * Text Domain:       dfp-ads
+ * Github Plugin URI: https://github.com/ThatGerber/dfp-ads
+ * GitHub Branch:     master
  *
  *
  * The Plugin File

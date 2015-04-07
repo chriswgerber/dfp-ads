@@ -1,0 +1,13 @@
+language: php
+php:
+  - "5.6"
+  - "5.5"
+  - "5.4"
+  - "5.3"
+  - "hhvm"
+
+script: phpunit --configuration tests/phpunit.xml
+
+notifications:
+  slack:
+    secure: VXVlvWkT+t8zu6Uyq4QAUiPIY6mzV4HToyylyyHZpNV7+hBnnBBEmYIErf/wb9zm4pLNk+wv3+FeDUbX/Q/kMTx9G1FWBUnAfj+1p0AT/T2h/sPPNYdx8fJhAf61c/gks/ZAacWT3Uvz2o7Bvew2L6tkAHHllrlVlYvOA2mjNrc=
