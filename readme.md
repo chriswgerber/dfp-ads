@@ -1,6 +1,6 @@
 # DFP Ad Manager
 
-[![Build Status](https://travis-ci.org/ThatGerber/dfp-ads.svg)](https://travis-ci.org/ThatGerber/dfp-ads) [![Code Climate](https://codeclimate.com/github/ThatGerber/dfp-ads/badges/gpa.svg)](https://codeclimate.com/github/ThatGerber/dfp-ads)
+[![Build Status](https://travis-ci.org/ThatGerber/dfp-ads.svg)](https://travis-ci.org/ThatGerber/dfp-ads) [![Code Climate](https://codeclimate.com/github/ThatGerber/dfp-ads/badges/gpa.svg)](https://codeclimate.com/github/ThatGerber/dfp-ads) [![Test Coverage](https://codeclimate.com/github/ThatGerber/dfp-ads/badges/coverage.svg)](https://codeclimate.com/github/ThatGerber/dfp-ads)
 
 Manager for ad positions and targeting through DoubleClick for Publishers.
 
