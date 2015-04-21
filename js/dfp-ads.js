@@ -1,23 +1,7 @@
 /**
  * Javascript for Google Ads
  *
- * @since 0.0.1
- *
  **/
-/* Ad Scripts - Supplied by DoubleClick for Publishers */
-var googletag = googletag || {};
-googletag.cmd = googletag.cmd || [];
-(function() {
-    var gads = document.createElement('script');
-    gads.async = true;
-    gads.type = 'text/javascript';
-    var useSSL = 'https:' == document.location.protocol;
-    gads.src = (useSSL ? 'https:' : 'http:') +
-    '//www.googletagservices.com/tag/js/gpt.js';
-    var node = document.getElementsByTagName('script')[0];
-    node.parentNode.insertBefore(gads, node);
-})();
-
 /**
  * Prototype for Ad object coming from server
  *
@@ -74,16 +58,13 @@ var dfp_ad_data_proto = {
     ]
 };
 
-console.log( dfp_ad_object[0] );
-
 /**
  * Ad Position Creation
  */
-googletag.cmd.push( function() {
-
+googletag.cmd.push(function() {
+    // Object from Ajax
     var dfp_ad_data = dfp_ad_object[0],
         acct_id = dfp_ad_data.account_id;
-
     /**
      * Loads Ad Position
      *
@@ -105,14 +86,12 @@ googletag.cmd.push( function() {
     googletag.pubads().collapseEmptyDivs(true);
     // Go
     googletag.enableServices();
-
-
     /**
      * Loads Ad Position
      *
      * @param {Object} position - Array of ad positions
      */
-    function define_ad_slot( position ) {
+    function define_ad_slot(position) {
         googletag.defineSlot(
             acct_id + position.ad_name,
             position.sizes,
@@ -125,15 +104,13 @@ googletag.cmd.push( function() {
             ).addService(googletag.pubads());
         }
     }
-
     /**
      * Sets Page level targeting
      * @param {object} targeting
      */
-    function set_targeting( targeting ) {
+    function set_targeting(targeting) {
         for (var target in targeting) {
             googletag.pubads().setTargeting(target, targeting[target]);
         }
     }
-
 });

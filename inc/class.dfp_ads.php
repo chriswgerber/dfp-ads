@@ -11,6 +11,16 @@
 Class DFP_Ads {
 
 	/**
+	 * Loads Google Ads JS to header
+	 *
+	 * @since 0.0.1
+	 * @access public
+	 *
+	 * @var string $google_ad_script_name
+	 */
+	public $google_ad_script_name = 'google_ad_js';
+
+	/**
 	 * Name of the javascript file.
 	 *
 	 * @since 0.0.1
@@ -184,11 +194,20 @@ Class DFP_Ads {
 	 * @return mixed
 	 */
 	public function scripts_and_styles() {
+		// Google Ads JS Script
+		wp_register_script(
+			$this->google_ad_script_name,
+			$this->dir_uri . '/js/google-ads.js',
+			array( 'jquery' ),
+			false,
+			false
+		);
+		wp_enqueue_script( $this->google_ad_script_name );
 		// Preps the script
 		wp_register_script(
 			$this->script_name,
 			$this->dir_uri . '/js/dfp-ads.js',
-			array( 'jquery' ),
+			array( $this->google_ad_script_name, 'jquery' ),
 			false,
 			false
 		);
