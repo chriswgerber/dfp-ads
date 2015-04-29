@@ -84,6 +84,7 @@ googletag.cmd.push(function() {
     set_targeting(dfp_ad_data.page_targeting);
     // Collapse Empty Divs
     googletag.pubads().collapseEmptyDivs(true);
+    googletag.pubads().enableAsyncRendering();
     // Go
     googletag.enableServices();
     /**
