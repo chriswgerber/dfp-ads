@@ -3,62 +3,6 @@
  *
  **/
 /**
- * Prototype for Ad object coming from server
- *
- * @type {
- *          {
- *          account_id: string,
- *          div_id: string,
- *          roadblock_id: string,
- *          positions: {
- *              ad_name: string,
- *              out_of_page: boolean,
- *              position_tag: string,
- *              sizes: *[]
- *              }
- *          []
- *          }
- *      }
- */
-var dfp_ad_data_proto = {
-    // DFP Account ID
-    'account_id' : '',
-    // Div ID to associate with slot.
-    'div_id' : '',
-    // ID for Roadblock Ad
-    'roadblock_id' : '',
-    'page_targeting' : {
-        'Page' : [],
-        'Category' : [],
-        'Tag' : []
-    },
-    // Ad Positions generated in code
-    'positions': [
-        {
-            'ad_name': '',
-            'out_of_page': false,
-            'position_tag': '',
-            'sizes': [
-                [1, 1],
-                [640, 430]
-            ]
-        },
-        {
-            'ad_name': '',
-            'out_of_page': false,
-            'position_tag': '',
-            'sizes': [
-                [1, 1],
-                [640, 430]
-            ],
-            'targeting' : {
-                'key' : 'value'
-            }
-        }
-    ]
-};
-
-/**
  * Ad Position Creation
  */
 googletag.cmd.push(function() {
@@ -78,12 +22,11 @@ googletag.cmd.push(function() {
     }
     // Generates Ad Slots
     load_ad_positions(dfp_ad_data.positions);
-    // Enable Single Request
-    googletag.pubads().enableSingleRequest();
-    // Targeting
-    set_targeting(dfp_ad_data.page_targeting);
     // Collapse Empty Divs
     googletag.pubads().collapseEmptyDivs(true);
+    // Targeting
+    set_targeting(dfp_ad_data.page_targeting);
+    // Asynchronous Loading
     googletag.pubads().enableAsyncRendering();
     // Go
     googletag.enableServices();
@@ -111,7 +54,8 @@ googletag.cmd.push(function() {
      */
     function set_targeting(targeting) {
         for (var target in targeting) {
-            googletag.pubads().setTargeting(target, targeting[target]);
+            var key = target.toLowerCase();
+            googletag.pubads().setTargeting(key, targeting[target]);
         }
     }
 });
