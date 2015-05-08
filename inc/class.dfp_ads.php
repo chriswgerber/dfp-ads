@@ -69,7 +69,11 @@ Class DFP_Ads {
 	 * @since 0.0.1
 	 * @access public
 	 */
-	public function __construct() { }
+	public function __construct() {
+
+		/** Creates DFP_Ads Shortcode */
+		add_shortcode( 'dfp_ads', array( $this, 'shortcode' ) );
+	}
 
 	/**
 	 * Set DFP Property Code

@@ -57,9 +57,6 @@ $dfp_ads             = new DFP_Ads();
 $dfp_ads->dir_uri    = plugins_url( null, __FILE__ );
 $dfp_ads->set_account_id( dfp_get_settings_value( 'dfp_property_code' ) ); // = '/35190362/';
 
-/** Creates DFP_Ads Shortcode */
-add_shortcode( 'dfp_ads', array($dfp_ads, 'shortcode') );
-
 /*
  * Enqueues the styles and scripts into WordPress. When this action runs
  * it also will grab all of the positions and other filtered in information
