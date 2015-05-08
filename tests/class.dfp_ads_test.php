@@ -2,6 +2,9 @@
 /**
  * DFP Ads Test Class
  * @see DFP_Ads
+ *
+ * @since 0.1.0
+ * @author Chris W. Gerber <chriswgerber@gmail.com>
  */
 require ('inc/class.dfp_ads.php');
 
@@ -9,10 +12,16 @@ class Test_DFP_Ads extends PHPUnit_Framework_TestCase {
 
 	private $_dfp_ads;
 
+	/**
+	 * Set up the test
+	 */
 	protected function setUp() {
 		$this->_dfp_ads = new DFP_Ads();
 	}
 
+	/**
+	 * Tear down the test
+	 */
 	protected function tearDown() {
 		$this->_dfp_ads = NULL;
 	}
