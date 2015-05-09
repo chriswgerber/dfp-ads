@@ -1,20 +1,22 @@
 language: php
-php:
-  - "5.6"
-  - "5.5"
-  - "5.4"
-  - "5.3"
-  - "hhvm"
-
-script: phpunit --configuration tests/phpunit.xml
-
-after_script:
-  - vendor/bin/test-reporter
-
-addons:
-  code_climate:
-    secure: "P4hTz+k+c+qa+soiyVnsbgnq9g2ub0PN/k3xx0Zjyxa4BT09y7Vamuey8PEWh4KXUhMcL+KRLdqG79n2T36OxZxfVcJM1zgE24M3tdL63qE0dacs7S2uyUvah7oBpRnCZgY6E7sVpxEZis9d03rQfpLM2hLSiTdeLg2bukLwlK4="
 
 notifications:
-  slack:
-    secure: VXVlvWkT+t8zu6Uyq4QAUiPIY6mzV4HToyylyyHZpNV7+hBnnBBEmYIErf/wb9zm4pLNk+wv3+FeDUbX/Q/kMTx9G1FWBUnAfj+1p0AT/T2h/sPPNYdx8fJhAf61c/gks/ZAacWT3Uvz2o7Bvew2L6tkAHHllrlVlYvOA2mjNrc=
+  on_success: never
+  on_failure: change
+
+php:
+  - 5.3
+  - 5.5
+
+env:
+  - WP_VERSION=latest WP_MULTISITE=0
+
+matrix:
+  include:
+    - php: 5.3
+      env: WP_VERSION=latest WP_MULTISITE=1
+
+before_script:
+  - bash build/install-wp-tests.sh dfp-ads-test wp wp localhost $WP_VERSION
+
+script: phpunit
