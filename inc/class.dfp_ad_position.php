@@ -104,7 +104,10 @@ class DFP_Ad_Position {
 		/**
 		 * @param $position WP_Post
 		 */
-		if ( $id !== null && ( $position = get_post( $id ) ) ) {
+		if (
+            $id !== null &&
+            $position = get_post( $id )
+        ) {
 			$meta = get_post_meta( $position->ID );
 
 			$this->post_id      = $id;
