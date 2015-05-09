@@ -17,7 +17,7 @@ matrix:
       env: WP_VERSION=latest WP_MULTISITE=1
 
 before_script:
-  - bash build/install-wp-tests.sh dfp-ads-test wp wp localhost $WP_VERSION
+  - bash build/install-wp-tests.sh dfp-ads-test root '' localhost $WP_VERSION
 
 script: phpunit
 
