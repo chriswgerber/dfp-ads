@@ -64,7 +64,7 @@ class DFP_Ad_Position {
 	 *
 	 * @var array
 	 */
-	public $sizes = [];
+	public $sizes = array();
 
 	/**
 	 * Defines whether the slot should include Out of Page position
