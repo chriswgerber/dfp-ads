@@ -1,28 +1,26 @@
 language: php
-
-notifications:
-  on_success: never
-  on_failure: change
-
-php:
-  - 5.3
-  - 5.5
-
-env:
-  - WP_VERSION=latest WP_MULTISITE=0
-
-matrix:
-  include:
-    - php: 5.3
-      env: WP_VERSION=latest WP_MULTISITE=1
-
-before_script:
-  - bash build/install-wp-tests.sh dfp-ads-test root '' localhost $WP_VERSION
-
-script:
-  - phpunit
-
 notifications:
   slack:
-    secure:
-      VXVlvWkT+t8zu6Uyq4QAUiPIY6mzV4HToyylyyHZpNV7+hBnnBBEmYIErf/wb9zm4pLNk+wv3+FeDUbX/Q/kMTx9G1FWBUnAfj+1p0AT/T2h/sPPNYdx8fJhAf61c/gks/ZAacWT3Uvz2o7Bvew2L6tkAHHllrlVlYvOA2mjNrc=
+    secure: VXVlvWkT+t8zu6Uyq4QAUiPIY6mzV4HToyylyyHZpNV7+hBnnBBEmYIErf/wb9zm4pLNk+wv3+FeDUbX/Q/kMTx9G1FWBUnAfj+1p0AT/T2h/sPPNYdx8fJhAf61c/gks/ZAacWT3Uvz2o7Bvew2L6tkAHHllrlVlYvOA2mjNrc=
+addons:
+  code_climate:
+    repo_token:
+      secure: fL96aHS819KMjHZj6DiFP9utc2YlChJROwrUoUhfybZvyw2DBc2kja9BfotfdTZUHR4rWaxCCNWLz2HmnhpOKTPAGLP9dzdbAUbV2lADoTGslNdtzcTyRMJvQRT9AT2qIqurpovE7YAcyoVAOWzE0CKjahrUQxAdvUIUlycBMbc=
+php:
+- 5.3
+- 5.5
+env:
+  matrix:
+  - WP_VERSION=latest WP_MULTISITE=0
+matrix:
+  include:
+  - php: 5.3
+    env: WP_VERSION=latest WP_MULTISITE=1
+before_script:
+  - composer self-update
+  - composer install
+  - bash build/install-wp-tests.sh dfp-ads-test root '' localhost $WP_VERSION
+script:
+  - phpunit
+after_script:
+  - ./vendor/bin/test-reporter

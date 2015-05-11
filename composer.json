@@ -5,9 +5,6 @@
         "phpunit/phpunit": "4.6.*",
         "codeclimate/php-test-reporter": "dev-master"
     },
-    "require": {
-        "league/csv": "7.0.*@dev"
-    },
     "license": "GPL-2.0+",
     "authors": [
         {

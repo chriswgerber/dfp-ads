@@ -1,4 +1,4 @@
 languages:
   JavaScript: true
   PHP: true
-exclude_paths: []
+exclude_paths: [ 'tests/', 'build/' ]
