@@ -23,11 +23,12 @@
 define( 'EPG_AD_PLUGIN_VER', '0.1.0' );
 
 include( 'inc/helper_functions.php' );
+include( 'inc/abstract.dfp_ads_form.php' );
 include( 'inc/class.dfp_ads.php' );
 include( 'inc/class.dfp_ads_post_type.php' );
 include( 'inc/class.dfp_ads_input.php' );
 include( 'inc/class.dfp_ad_position.php' );
-include( 'inc/class.dfp_ads_form.php' );
+include( 'inc/class.dfp_ads_settings_form.php' );
 include( 'inc/class.dfp_ads_admin.php' );
 include( 'widget/widget.ad_position.php' );
 
@@ -149,6 +150,7 @@ if ( is_admin() ) {
 		$fields['dfp_property_code'] = array(
 			'id'          => 'dfp_property_code',
 			'field'       => 'text',
+            'callback'    => 'text',
 			'title'       => 'DFP Property Code',
 			'section'     => 'general_settings',
 			'description' => 'Enter your DoubleClick for Publishers Property Code.'
@@ -157,13 +159,31 @@ if ( is_admin() ) {
 		return $fields;
 	} ) );
 
-	// Admin
-	$ad_form  = new DFP_Ads_Form;
+    // Settings Page
+	$ad_form  = new DFP_Ads_Settings_Form;
 	$ad_admin = new DFP_Ads_Admin( $ad_form );
-	$ad_admin->page_title = 'Ad Manager Settings';
-	$ad_admin->post_type = $dfp_post_type->name;
+    $ad_admin->menu_title  = 'Settings';
+    $ad_admin->plugin_slug = 'settings';
+    $ad_admin->options_str = 'DFP_Ads_Settings';
+    $ad_admin->options_grp = 'DFP_Ads_Settings_group';
+	$ad_admin->page_title  = 'Ad Manager Settings';
+    $ad_admin->user_cap    = 'manage_options';
+	$ad_admin->post_type   = $dfp_post_type->name;
 	add_action( 'admin_menu', array( $ad_admin, 'register_menu_page' ) );
 	add_action( 'admin_init', array( $ad_admin, 'menu_page_init' ) );
+
+    // Import Page
+    $ad_form  = new DFP_Ads_Settings_Form;
+    $ad_admin = new DFP_Ads_Admin( $ad_form );
+    $ad_admin->menu_title  = 'Import';
+    $ad_admin->plugin_slug = 'import';
+    $ad_admin->options_str = 'DFP_Ads_Import';
+    $ad_admin->options_grp = 'DFP_Ads_Import_group';
+    $ad_admin->page_title  = 'Import Positions';
+    $ad_admin->user_cap    = 'manage_options';
+    $ad_admin->post_type   = $dfp_post_type->name;
+    add_action( 'admin_menu', array( $ad_admin, 'register_menu_page' ) );
+    add_action( 'admin_init', array( $ad_admin, 'menu_page_init' ) );
 }
 
 /*

@@ -59,7 +59,7 @@ function dfp_get_ad_positions() {
  *
  * @param $id int
  *
- * @return null|WP_Post
+ * @return null|DFP_Ad_position
  */
 function dfp_get_ad_position( $id ) {
 	$position = apply_filters('get_dfp_ad_position', get_post( $id ) );
@@ -224,3 +224,19 @@ function dfp_get_settings_value( $setting ) {
 	return $option_array[$setting];
 }
 
+
+
+/**
+ * Creates Select Options for widget
+ *
+ * @since 0.2.0
+ * @access public
+ *
+ * @param $value Value
+ */
+function dfp_ad_select_options( $value ) {
+    $positions = dfp_get_ad_positions();
+    foreach ( $positions as $position ) {
+        echo '<option' . selected( $value, $position->post_id ) . ' value="' . $position->post_id . '">(' . $position->post_id  . ') ' . $position->title . '</option>';
+    }
+}
