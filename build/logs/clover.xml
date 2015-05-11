@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1431145952">
-  <project timestamp="1431145952">
+<coverage generated="1431286643">
+  <project timestamp="1431286643">
     <file name="/srv/www/wordpress-develop/tests/phpunit/includes/bootstrap.php">
       <class name="WP_PHPUnit_Util_Getopt" namespace="global" fullPackage="WP.PHPUnit.Util">
         <metrics methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="40" coveredstatements="0" elements="41" coveredelements="0"/>
