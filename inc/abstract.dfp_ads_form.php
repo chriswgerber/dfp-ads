@@ -96,14 +96,14 @@ Abstract Class DFP_Ads_Form {
      */
     public function text( $args ) {
         // Why is it so nested?
-        $args   = $args[0];
-        // Field values
-        $id     = $this->options_str . '[' . $args['id'] . ']';
-        $title  = $args['title'];
-        $value  = ( ! isset( $this->values[ $args['id'] ] ) ? '' : $this->values[ $args['id'] ] );
+        $args  = $args[0];
+        $id    = $this->options_str . '[' . $args['id'] . ']';
+	    $field = $args['field'];
+        $title = $args['title'];
+        $value = ( ! isset( $this->values[ $args['id'] ] ) ? '' : $this->values[ $args['id'] ] );
         ?>
         <div>
-            <input type="<?php echo $args->field; ?>"
+            <input type="<?php _e( $field, 'dfp-ads' ); ?>"
                    id="<?php _e( $id, 'dfp-ads' ); ?>"
                    name="<?php _e( $id, 'dfp-ads' ); ?>"
                    value="<?php _e( $value, 'dfp-ads' ); ?>" />
@@ -135,10 +135,10 @@ Abstract Class DFP_Ads_Form {
         <div>
             <select id="<?php _e( $id, 'dfp-ads' ); ?>" name="<?php _e( $id, 'dfp-ads' ); ?>">
                 <?php dfp_ad_select_options( $value ); ?>
-                </select>
-            <?php if ( isset( $args['description'] ) ) {
-                echo '<p><em>'. $args['description'] . '</em></p>';
-            } ?>
+            </select>
+            <?php if ( isset( $args['description'] ) ) { ?>
+                <p><em><?php _e( $args['description'], 'dfp-ads'); ?></em></p>
+            <?php } ?>
         </div>
     <?php
     }

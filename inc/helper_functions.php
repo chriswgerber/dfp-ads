@@ -35,7 +35,7 @@ function dfp_get_ad_positions() {
 		'post_type' => 'dfp_ads',
 		'post_status' => 'publish',
 		'posts_per_page' => -1,
-		'caller_get_posts'=> 1
+		'ignore_sticky_posts' => 1
 	);
 	$all_ads = new WP_Query($args);
 
@@ -64,7 +64,13 @@ function dfp_get_ad_positions() {
 function dfp_get_ad_position( $id ) {
 	$position = apply_filters('get_dfp_ad_position', get_post( $id ) );
 
-	return ( $position->post_type !== 'dfp_ads' ? false : new DFP_Ad_Position( $position->ID ) );
+	if ( $position !== null && $position->post_type === 'dfp_ads' ) {
+
+		return new DFP_Ad_Position( $position->ID );
+	} else {
+
+		return false;
+	}
 }
 
 /**
@@ -224,8 +230,6 @@ function dfp_get_settings_value( $setting ) {
 	return $option_array[$setting];
 }
 
-
-
 /**
  * Creates Select Options for widget
  *
@@ -235,6 +239,7 @@ function dfp_get_settings_value( $setting ) {
  * @param $value Value
  */
 function dfp_ad_select_options( $value ) {
+	echo '<option value="" disabled>Select Position</option>';
     $positions = dfp_get_ad_positions();
     foreach ( $positions as $position ) {
         echo '<option' . selected( $value, $position->post_id ) . ' value="' . $position->post_id . '">(' . $position->post_id  . ') ' . $position->title . '</option>';
