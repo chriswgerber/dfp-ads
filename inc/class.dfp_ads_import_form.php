@@ -57,6 +57,13 @@ class DFP_Ads_Import_Form extends DFP_Ads_Form {
             <?php do_settings_sections( $this->settings_sections ); ?>
             <?php $this->button( 'Import CSV' ); ?>
 		</form>
+            </div>
+        </div>
+        <div class="postbox ">
+            <div class="inside">
+                <p>
+                    For instructions on how to import from CSV, visit
+                    <a href="http://www.chriswgerber.com/dfp-ads/import-from-csv" target="_blank">www.chriswgerber.com/dfp-ads/import-from-csv</a>.</p>
 		<?php
 	}
 
