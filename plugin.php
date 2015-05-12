@@ -13,8 +13,7 @@
  * Text Domain:       dfp-ads
  * Github Plugin URI: https://github.com/ThatGerber/dfp-ads
  * GitHub Branch:     master
- *
- * Version: 0.1.0
+ * Version:           0.2.0
  *
  * The Plugin File
  *
