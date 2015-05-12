@@ -239,7 +239,7 @@ function dfp_get_settings_value( $setting ) {
  * @param $value Value
  */
 function dfp_ad_select_options( $value ) {
-	echo '<option value="" disabled>Select Position</option>';
+	echo '<option value="false">Select Position</option>';
     $positions = dfp_get_ad_positions();
     foreach ( $positions as $position ) {
         echo '<option' . selected( $value, $position->post_id ) . ' value="' . $position->post_id . '">(' . $position->post_id  . ') ' . $position->title . '</option>';

@@ -6,7 +6,7 @@
  * Plugin Name:       DFP - DoubleClick Ad Manager
  * Plugin URI:        http://www.chriswgerber.com/dfp-ads/
  * Description:       Manages ad code for DoubleClick for Publishers
- * Version:           0.1.0
+ * Version:           0.2.0
  * Author:            Chris W. Gerber
  * Author URI:        http://www.chriswgerber.com/
  * License:           GPL-2.0+
@@ -34,9 +34,6 @@ include( 'inc/class.dfp_ads.php' );
 include( 'inc/class.dfp_ads_post_type.php' );
 include( 'inc/class.dfp_ads_input.php' );
 include( 'inc/class.dfp_ad_position.php' );
-include( 'inc/interface.dfp_csv_data.php' );
-include( 'inc/class.dfp_ads_csv_import.php' );
-include( 'inc/class.dfp_ads_csv_reader.php' );
 include( 'inc/class.dfp_ads_settings_form.php' );
 include( 'inc/class.dfp_ads_import_form.php' );
 include( 'inc/class.dfp_ads_admin.php' );
@@ -206,10 +203,8 @@ if ( is_admin() ) {
 		return $fields;
 	} ) );
 
-    $ad_form  = new DFP_Ads_Import_Form;
-
-
-    $ad_admin = new DFP_Ads_Admin( $ad_form );
+    $import_form = new DFP_Ads_Import_Form;
+    $ad_admin    = new DFP_Ads_Admin( $import_form );
     $ad_admin->menu_title  = 'Import';
     $ad_admin->plugin_slug = 'import';
     $ad_admin->options_str = 'DFP_Ads_Import';
