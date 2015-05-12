@@ -40,3 +40,6 @@ cache
 
 # Ignore Composer directory
 /vendor/
+
+# Ignore WordPress repo
+/plugin/

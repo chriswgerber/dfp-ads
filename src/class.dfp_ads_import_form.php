@@ -73,7 +73,6 @@ class DFP_Ads_Import_Form extends DFP_Ads_Form {
 		$file   = new \SplFileObject( $file );
 		$reader = new CsvReader($file);
 		$reader->setHeaderRowNumber(0);
-		$csv    = new DFP_Ads_CSV_Reader( $reader, $file );
 		$this->results_table( $reader );
         $this->setup_data( $reader );
 		echo '<br />';

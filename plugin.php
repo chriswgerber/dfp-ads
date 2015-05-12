@@ -6,7 +6,6 @@
  * Plugin Name:       DFP - DoubleClick Ad Manager
  * Plugin URI:        http://www.chriswgerber.com/dfp-ads/
  * Description:       Manages ad code for DoubleClick for Publishers
- * Version:           0.2.0
  * Author:            Chris W. Gerber
  * Author URI:        http://www.chriswgerber.com/
  * License:           GPL-2.0+
@@ -15,6 +14,7 @@
  * Github Plugin URI: https://github.com/ThatGerber/dfp-ads
  * GitHub Branch:     master
  *
+ * Version: 0.1.0
  *
  * The Plugin File
  *
@@ -22,7 +22,7 @@
  * @since             0.0.1
  * @subpackage        DFP-Ads
  */
-define( 'EPG_AD_PLUGIN_VER', '0.1.0' );
+define( 'EPG_AD_PLUGIN_VER', '0.2.0' );
 
 /* Autoload */
 require_once 'vendor/autoload.php';
