@@ -1,10 +1,11 @@
 <?php
 /**
+ * DFP Ad Manager Bootstrap File
+ *
  * @wordpress-plugin
  * Plugin Name:       DFP - DoubleClick Ad Manager
  * Plugin URI:        http://www.chriswgerber.com/dfp-ads/
  * Description:       Manages ad code for DoubleClick for Publishers
- * Version:           0.1.0
  * Author:            Chris W. Gerber
  * Author URI:        http://www.chriswgerber.com/
  * License:           GPL-2.0+
@@ -13,6 +14,7 @@
  * Github Plugin URI: https://github.com/ThatGerber/dfp-ads
  * GitHub Branch:     master
  *
+ * Version: 0.1.0
  *
  * The Plugin File
  *
@@ -20,16 +22,21 @@
  * @since             0.0.1
  * @subpackage        DFP-Ads
  */
-define( 'EPG_AD_PLUGIN_VER', '0.1.0' );
+define( 'EPG_AD_PLUGIN_VER', '0.2.0' );
 
-include( 'inc/helper_functions.php' );
-include( 'inc/abstract.dfp_ads_form.php' );
-include( 'inc/class.dfp_ads.php' );
-include( 'inc/class.dfp_ads_post_type.php' );
-include( 'inc/class.dfp_ads_input.php' );
-include( 'inc/class.dfp_ad_position.php' );
-include( 'inc/class.dfp_ads_settings_form.php' );
-include( 'inc/class.dfp_ads_admin.php' );
+/* Autoload */
+require_once 'vendor/autoload.php';
+
+/* Library */
+include( 'src/helper_functions.php' );
+include( 'src/abstract.dfp_ads_form.php' );
+include( 'src/class.dfp_ads.php' );
+include( 'src/class.dfp_ads_post_type.php' );
+include( 'src/class.dfp_ads_input.php' );
+include( 'src/class.dfp_ad_position.php' );
+include( 'src/class.dfp_ads_settings_form.php' );
+include( 'src/class.dfp_ads_import_form.php' );
+include( 'src/class.dfp_ads_admin.php' );
 include( 'widget/widget.ad_position.php' );
 
 /*
@@ -172,9 +179,32 @@ if ( is_admin() ) {
 	add_action( 'admin_menu', array( $ad_admin, 'register_menu_page' ) );
 	add_action( 'admin_init', array( $ad_admin, 'menu_page_init' ) );
 
-    // Import Page
-    $ad_form  = new DFP_Ads_Settings_Form;
-    $ad_admin = new DFP_Ads_Admin( $ad_form );
+	/*
+	 * Import Page
+	 */
+	add_filter( 'dfp_ads_import_sections', ( function( $sections ) {
+		$sections['import_data'] = array(
+			'id'    => 'import_data',
+			'title' => 'Import from CSV'
+		);
+
+		return $sections;
+	} ) );
+	add_filter( 'dfp_ads_import_fields', ( function( $fields ) {
+		$fields['file_import'] = array(
+			'id'          => 'import_csv',
+			'field'       => 'file',
+			'callback'    => 'file',
+			'title'       => 'Import CSV from DFP',
+			'section'     => 'import_data',
+			'description' => 'Upload a CSV File directly from DoubleClick for Publishers'
+		);
+
+		return $fields;
+	} ) );
+
+    $import_form = new DFP_Ads_Import_Form;
+    $ad_admin    = new DFP_Ads_Admin( $import_form );
     $ad_admin->menu_title  = 'Import';
     $ad_admin->plugin_slug = 'import';
     $ad_admin->options_str = 'DFP_Ads_Import';

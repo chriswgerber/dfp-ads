@@ -128,13 +128,11 @@ class DFP_Ads_Widget extends WP_Widget {
 	 * @return mixed
 	 */
 	public function form( $instance ) {
-		$id    = $this->get_field_id('position_title');
-		$name  = $this->get_field_name('position_title');
-		$value = $instance['position_title'];
+		$id    = ( $this->get_field_id('position_title') !== null ? $this->get_field_id('position_title') : '' );
+		$name  = ( $this->get_field_name('position_title') !== null ? $this->get_field_name('position_title') : '' );
+		$value = ( isset( $instance['position_title'] ) ? $instance['position_title'] : '' );
 		?>
-		<h4>
-			<label for="<?php _e( $id ); ?>"><?php _e( 'Ad Position', 'dfp-ads'); ?></label>
-		</h4>
+		<h4><label for="<?php _e( $id ); ?>"><?php _e( 'Ad Position', 'dfp-ads'); ?></label></h4>
 		<p>
 			<select class="widefat" name="<?php _e( $name ); ?>" id="<?php _e( $id ); ?>">
 				<?php dfp_ad_select_options( $value ); ?>

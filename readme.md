@@ -30,8 +30,6 @@ Simpler management of DFP (*DoubleClick for Publishers*) ad positions
 <a name="Installation"></a>
 ## Installation
 
-Documentation in progress. 
-
 <a name="#Install"></a>
 ### Install plugin
 
@@ -71,11 +69,13 @@ Managing the tags will be made simple through an import function that works dire
 
 Below are a list of items that need to be completed before the plugin is ready for release. 
 
-* Full Test Suite for current code and all new features.
-* Import tool for creating positions via a DFP Export CSV.
-* Extensibility in the Javascript file that powers the ad positions. I.e. the ability to add new, custom positions through an API.
 * Filter taxonomy names and values into page-level targeting for positions.
 * More precise validation of input values in custom metaboxes for ad positions.
+* Improve documentation on plugin.
+
+### Other priorities
+
+* Full Test Suite for current code and all new features.
 
 <a name="FAQ"></a>
 ## Frequently Asked Questions
@@ -84,6 +84,17 @@ Submit your questions at [chriswgerber.com/contact/](http://www.chriswgerber.com
 
 <a name="Changelog"></a>
 ## Changelog
+
+### 0.2.0
+
+* Added functionality for importing DFP Ads
+* Added Travis CI Integration.
+* Added Composer
+* Begin Unit Testing
+* Added Code Coverage Reporting
+* Updated JS to make extensions easier
+* Added Asynchronous ad loading
+* Made plugin compatible with PHP 5.3
 
 ### 0.1.0
 * Initial pre-release

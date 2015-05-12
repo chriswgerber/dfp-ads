@@ -1,6 +1,9 @@
 {
     "name": "ThatGerber/dfp-ads",
     "description": "WordPress plugin for DoubleClick for Publishers",
+    "require": {
+        "ddeboer/data-import": "@stable"
+    },
     "require-dev": {
         "phpunit/phpunit": "4.6.*",
         "codeclimate/php-test-reporter": "dev-master"

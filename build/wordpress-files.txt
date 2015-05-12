@@ -1,0 +1,7 @@
+index.php
+plugin.php
+readme.txt
+js/
+lib/
+src/
+widget/
