@@ -28,15 +28,15 @@ define( 'EPG_AD_PLUGIN_VER', '0.1.0' );
 require_once 'vendor/autoload.php';
 
 /* Library */
-include( 'inc/helper_functions.php' );
-include( 'inc/abstract.dfp_ads_form.php' );
-include( 'inc/class.dfp_ads.php' );
-include( 'inc/class.dfp_ads_post_type.php' );
-include( 'inc/class.dfp_ads_input.php' );
-include( 'inc/class.dfp_ad_position.php' );
-include( 'inc/class.dfp_ads_settings_form.php' );
-include( 'inc/class.dfp_ads_import_form.php' );
-include( 'inc/class.dfp_ads_admin.php' );
+include( 'src/helper_functions.php' );
+include( 'src/abstract.dfp_ads_form.php' );
+include( 'src/class.dfp_ads.php' );
+include( 'src/class.dfp_ads_post_type.php' );
+include( 'src/class.dfp_ads_input.php' );
+include( 'src/class.dfp_ad_position.php' );
+include( 'src/class.dfp_ads_settings_form.php' );
+include( 'src/class.dfp_ads_import_form.php' );
+include( 'src/class.dfp_ads_admin.php' );
 include( 'widget/widget.ad_position.php' );
 
 /*
