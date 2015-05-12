@@ -33,25 +33,17 @@ class DFP_Ads_Import_Form extends DFP_Ads_Form {
 	                switch ( $submit_value ) :
 		                // We're importing a CSV
 		                case 'Import CSV':
-			                $this->import_csv( $_FILES['DFP_Ads_Import']['tmp_name']['import_csv'] );
+			                $this->prepare_data( $_FILES['DFP_Ads_Import']['tmp_name']['import_csv'] );
 		                    break;
+                        case 'Confirm Import':
+                            $this->import_data();
+                            $this->return_button('Return to Importer');
+                            break;
 		                // Display Import Form
 		                default;
 							$this->import_form();
 					endswitch;
 	                ?>
-                </div>
-            </div>
-	        <div class="postbox">
-                <div class="inside">
-	                <h3>$_POST</h3>
-	                <?php var_dump( $_POST ); ?>
-                </div>
-	        </div>
-	        <div class="postbox">
-		        <div class="inside">
-	                <h3>$_FILES</h3>
-	                <?php var_dump( $_FILES ); ?>
                 </div>
             </div>
         </div>
@@ -68,14 +60,15 @@ class DFP_Ads_Import_Form extends DFP_Ads_Form {
 		<?php
 	}
 
-	public function import_csv( $file ) {
+	public function prepare_data( $file ) {
 		echo '<h3>Choose the positions to import</h3>';
 		echo '<form id="CSVImport" name="CSVImport" method="post" enctype="multipart/form-data">';
 		$file   = new \SplFileObject( $file );
 		$reader = new CsvReader($file);
 		$reader->setHeaderRowNumber(0);
-		$csv = new DFP_Ads_CSV_Reader( $reader, $file );
+		$csv    = new DFP_Ads_CSV_Reader( $reader, $file );
 		$this->results_table( $reader );
+        $this->setup_data( $reader );
 		echo '<br />';
 		$this->button( 'Confirm Import', true );
 		echo '</form>';
@@ -86,16 +79,16 @@ class DFP_Ads_Import_Form extends DFP_Ads_Form {
 		<table>
 			<thead>
 			<tr>
-				<th>Select</th>
-				<th>Code</th>
-				<th>Name</th>
-				<th>Sizes</th>
+				<th align="center">Select</th>
+				<th align="center">Code</th>
+				<th align="center">Name</th>
+				<th align="center">Sizes</th>
 			</tr>
 			</thead>
 			<tbody>
-		<?php foreach ($reader as $row) { ?>
+		<?php foreach ( $reader as $row ) { ?>
 			<tr>
-				<td><input type="checkbox" /></td>
+				<td align="center"><input type="checkbox" id="code[<?php _e( $row['#Code']); ?>]" name="code[<?php _e( $row['#Code']); ?>]" value="<?php _e( $row['#Code']); ?>" /></td>
 				<td><?php _e( $row['#Code']); ?></td>
 				<td><?php _e( $row['Name'] ); ?></td>
 				<td><?php _e( $row['Sizes'] ); ?></td>
@@ -106,11 +99,50 @@ class DFP_Ads_Import_Form extends DFP_Ads_Form {
 		<?php
 	}
 
+    public function import_data() {
+        $data = get_transient( 'import_data' );
+        foreach ( $data as $position ) {
+            if ( array_key_exists ( $position['#Code'], $_POST['code'] ) ) {
+                echo 'Added Position <kbd>' . $position ['#Code'] . '</kbd>.<br />';
+                $this->add_position( $position );
+            }
+
+        }
+    }
+
+    /**
+     * Sets up data to be imported
+     *
+     * @param CSVReader $reader
+     */
+    public function setup_data( $reader ) {
+        $transient = array();
+        foreach ( $reader as $key => $value ) {
+            $transient[$key] = $value;
+        }
+        set_transient( 'import_data', $transient, 30 );
+    }
+
 	public function return_button( $text ) {
 		echo '<form id="return" name="return" method="post">';
+        echo '<br />';
 		$this->button( $text );
 		echo '</form>';
 	}
+
+    public function add_position( $position ) {
+        $post = array(
+            'post_content' => $position['Description'],
+            'post_title'   => $position['#Code'],
+            'post_status'  => 'publish',
+            'post_type'    => 'dfp_ads',
+            'post_author'  => get_current_user_id(),
+        );
+        $ad_post_id = wp_insert_post( $post );
+        update_post_meta( $ad_post_id, 'dfp_ad_code', $position['#Code'] );
+        update_post_meta( $ad_post_id, 'dfp_position_name', $position['Name'] );
+        update_post_meta( $ad_post_id, 'dfp_position_sizes', $position['Sizes'] );
+    }
 
 	public function file( $args ) {
 		// Nested args....
