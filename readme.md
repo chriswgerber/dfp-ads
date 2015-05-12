@@ -71,11 +71,14 @@ Managing the tags will be made simple through an import function that works dire
 
 Below are a list of items that need to be completed before the plugin is ready for release. 
 
-* Full Test Suite for current code and all new features.
-* Import tool for creating positions via a DFP Export CSV.
-* Extensibility in the Javascript file that powers the ad positions. I.e. the ability to add new, custom positions through an API.
+* ~~Import tool for creating positions via a DFP Export CSV.~~
+* ~~Extensibility in the Javascript file that powers the ad positions. I.e. the ability to add new, custom positions through an API.~~
 * Filter taxonomy names and values into page-level targeting for positions.
 * More precise validation of input values in custom metaboxes for ad positions.
+
+### Other priorities
+
+* Full Test Suite for current code and all new features.
 
 <a name="FAQ"></a>
 ## Frequently Asked Questions
