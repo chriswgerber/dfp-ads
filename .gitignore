@@ -42,4 +42,5 @@ cache
 /vendor/
 
 # Ignore WordPress repo
-/plugin/
+/repo/
+

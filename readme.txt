@@ -3,7 +3,7 @@
 Stable tag: trunk
 Contributors: chriswgerber
 Requires at least: 3.0.0
-Tested up to: 4.1.1
+Tested up to: 4.2.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Tags: dfp, doubleclick, ads, ad trafficking, ad ops
@@ -14,7 +14,7 @@ Simpler management of DFP (DoubleClick for Publishers) ad positions
 
 **For simple management of DoubleClick for Publishers ad positions.**
 
-Follow development of the plugin on [Github.com/ThatGerber/dfp-ads](http://github.com/ThatGerber/dfp-ads]
+Follow development of the plugin on [Github.com/ThatGerber/dfp-ads](http://github.com/ThatGerber/dfp-ads)
 
 == Installation ==
 
