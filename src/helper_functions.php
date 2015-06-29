@@ -47,6 +47,12 @@ function dfp_get_ad_positions() {
 		endwhile;
 	}
 
+	foreach ( $positions as $key => $position ) {
+		if ( $position->post_id == NULL ) {
+			unset( $positions[$key] );
+		}
+	}
+
 	return $positions;
 }
 
