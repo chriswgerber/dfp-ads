@@ -105,11 +105,13 @@ class DFP_Ad_Position {
 		 * @param $position WP_Post
 		 */
 		if (
-            $id !== null &&
-            $position = get_post( $id )
-        ) {
+			(
+				$id !== null &&
+		                $position = get_post( $id )
+			) &&
+			$position->post_type === 'dfp_ads'
+	        ) {
 			$meta = get_post_meta( $position->ID );
-
 			$this->post_id      = $id;
 			$this->title        = $position->post_title;
 			$this->ad_name      = $meta['dfp_ad_code'][0];
