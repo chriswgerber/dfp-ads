@@ -1,0 +1,43 @@
+{
+  "name": "dfp-ads",
+  "version": "0.2.0",
+  "description": "DFP Ad Manager",
+  "main": "plugin.php",
+  "directories": {
+    "test": "tests"
+  },
+  "dependencies": {
+    "gulp-autoprefixer": "^2.3.1",
+    "del": "^1.2.0",
+    "gulp": "^3.9.0",
+    "gulp-cache": "^0.2.10",
+    "gulp-imagemin": "^2.3.0",
+    "gulp-concat": "^2.6.0",
+    "gulp-jshint": "^1.11.1",
+    "gulp-include": "^1.1.1",
+    "gulp-livereload": "^3.8.0",
+    "gulp-minify-css": "^1.2.0",
+    "gulp-notify": "^2.2.0",
+    "gulp-plumber": "^1.0.1",
+    "gulp-sass": "^2.0.3",
+    "gulp-rename": "^1.2.2",
+    "gulp-ruby-sass": "^1.0.5",
+    "gulp-uglify": "^1.2.0",
+    "gulp-watch": "^4.2.4",
+    "jshint-stylish": "^2.0.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ThatGerber/dfp-ads.git"
+  },
+  "author": "Chris W. Gerber",
+  "license": "GPL-2.0",
+  "bugs": {
+    "url": "https://github.com/ThatGerber/dfp-ads/issues"
+  },
+  "homepage": "https://github.com/ThatGerber/dfp-ads#readme"
+}
