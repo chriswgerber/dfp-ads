@@ -14,6 +14,10 @@ Simpler management of DFP (DoubleClick for Publishers) ad positions
 
 **For simple management of DoubleClick for Publishers ad positions.**
 
+This plugin is designed to simplify the process of working with DoubleClick for Publishers. Rather than inundate the user with too many options and settings, instead everything is managed within DoubleClick, utilizing WordPress to display the positions.
+
+Page, category, and tag targeting is built-in, with the option to extend on the DoubleClick Javascript library and add even more targeting and send data from the WordPress backend to DoubleClick.
+
 Follow development of the plugin on [Github.com/ThatGerber/dfp-ads](http://github.com/ThatGerber/dfp-ads)
 
 == Installation ==
@@ -37,15 +41,18 @@ Follow development of the plugin on [Github.com/ThatGerber/dfp-ads](http://githu
 
 == Screenshots ==
 
-Visit [chriswgerber.com/dfp-ads/](http://www.chriswgerber.com/dfp-ads/) for screenshots and more information.
+1. Full Ad Positions Page
+2. Individual Ad Positions Page
+3. Position Settings Page
+4. Position Import Page
+
+Visit [chriswgerber.com/dfp-ads/](http://www.chriswgerber.com/dfp-ads/) for more information.
 
 == Frequently Asked Questions ==
 
-Submit your questions at [chriswgerber.com/contact/](http://www.chriswgerber.com/contact/)
+Submit your questions at [chriswgerber.com/contact/](http://www.chriswgerber.com/contact/).
 
 == Upgrade Notice ==
-
-If you're coming from the pre-release, many features have been changed and improved. You will be required to re-setup your network.
 
 == Changelog ==
 
