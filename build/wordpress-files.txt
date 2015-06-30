@@ -1,6 +1,6 @@
 index.php
 plugin.php
 readme.txt
-js/
-src/
+assets/
+includes/
 widget/
