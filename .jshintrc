@@ -3,7 +3,6 @@
   "passfail"      : false,  // Stop on first error.
   "maxerr"        : 100,    // Maximum error before stopping.
 
-
   // Predefined globals whom JSHint will ignore.
   "browser"       : true,   // Standard browser globals e.g. `window`, `document`.
 
@@ -13,15 +12,11 @@
   "wsh"           : true,   // Windows Scripting Host.
 
   "jquery"        : true,
-  "ender"         : true,
-  "prototypejs"   : false,
-  "mootools"      : false,
-  "dojo"          : false,
 
-  "predef"        : [  // Custom globals.
-    //"exampleVar",
-    //"anotherCoolGlobal",
-    //"iLoveDouglas"
+  // Custom globals.
+  "predef"        : [
+    "googletag",
+    "dfp_ad_object"
   ],
 
 

@@ -20,16 +20,6 @@ googletag.cmd.push(function() {
             define_ad_slot(positions[ad_pos]);
         }
     }
-    // Generates Ad Slots
-    load_ad_positions(dfp_ad_data.positions);
-    // Collapse Empty Divs
-    googletag.pubads().collapseEmptyDivs(true);
-    // Targeting
-    set_targeting(dfp_ad_data.page_targeting);
-    // Asynchronous Loading
-    googletag.pubads().enableAsyncRendering();
-    // Go
-    googletag.enableServices();
     /**
      * Loads Ad Position
      *
@@ -58,4 +48,14 @@ googletag.cmd.push(function() {
             googletag.pubads().setTargeting(key, targeting[target]);
         }
     }
+    // Generates Ad Slots
+    load_ad_positions(dfp_ad_data.positions);
+    // Collapse Empty Divs
+    googletag.pubads().collapseEmptyDivs(true);
+    // Targeting
+    set_targeting(dfp_ad_data.page_targeting);
+    // Asynchronous Loading
+    googletag.pubads().enableAsyncRendering();
+    // Go
+    googletag.enableServices();
 });
