@@ -13,7 +13,7 @@ cd $BUILD/../;
 ###
 # Move vendor files to lib folder
 ###
-rsync -vah --exclude ".*/" vendor/ "$REPO_DIR/lib"
+rsync -vah --exclude ".*/" vendor/ "$REPO_DIR/vendor"
 
 ###
 # Make directory of files to import
@@ -25,12 +25,6 @@ rsync -hav --exclude ".*/" --files-from=build/wordpress-files.txt . "$REPO_DIR/"
 ###
 echo "Updating version to $VERSION";
 sed -i '' "s|\* Version:           *.*.*|\* Version:           $VERSION|" "$REPO_DIR/plugin.php"
-
-###
-# Change autoload
-###
-echo "Changing location of autoload";
-sed -i '' "s|require_once 'vendor/autoload.php'|require_once 'lib/autoload.php'|" "$REPO_DIR/plugin.php"
 
 ###
 # Updating Repo

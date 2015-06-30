@@ -5,24 +5,11 @@
 
 var gulp = require( 'gulp' ),
     plumber = require( 'gulp-plumber' ),
-    watch = require( 'gulp-watch' ),
-    livereload = require( 'gulp-livereload' ),
-    minifycss = require( 'gulp-minify-css' ),
     concat = require('gulp-concat'),
     jshint = require( 'gulp-jshint' ),
-    notify = require( 'gulp-notify' ),
-    include = require( 'gulp-include' ),
-    autoprefixer = require('gulp-autoprefixer'),
-    imagemin = require('gulp-imagemin'),
     stylish = require( 'jshint-stylish' ),
     uglify = require( 'gulp-uglify' ),
-    rename = require( 'gulp-rename' ),
-    sass = require( 'gulp-sass' );
-
-var onError = function( err ) {
-    console.log( 'An error occurred:', err.message );
-    this.emit( 'end' );
-};
+    rename = require( 'gulp-rename' );
 
 // Lint Task
 gulp.task('lint', function() {
