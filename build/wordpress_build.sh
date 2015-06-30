@@ -33,6 +33,29 @@ echo "Changing location of autoload";
 sed -i '' "s|require_once 'vendor/autoload.php'|require_once 'lib/autoload.php'|" "$REPO_DIR/plugin.php"
 
 ###
+# Updating Repo
+###
+cd repo;
+svn stat
+echo -n "Is it okay to commit this to the WordPress repo? (y/n) "
+read CONFIRM
+if [ "$CONFIRM" == 'y' ]; then
+    echo "Please enter the commit message.";
+    read MESSAGE;
+    svn ci -m "$MESSAGE";
+fi
+
+###
+# Add New Release
+###
+echo -n "Is this a release version? (y/n) "
+read CONFIRM_VER
+if [ "$CONFIRM_VER" == 'y' ]; then
+    svn cp trunk tags/"$VERSION";
+    svn ci -m "Version $VERSION";
+fi
+
+###
 # Return Home; We're Complete
 ###
 cd $BUILD;

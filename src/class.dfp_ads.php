@@ -201,7 +201,7 @@ Class DFP_Ads {
 		// Google Ads JS Script
 		wp_register_script(
 			$this->google_ad_script_name,
-			$this->dir_uri . '/js/google-ads.js',
+			$this->dir_uri . '/assets/js/google-ads.min.js',
 			array( 'jquery' ),
 			false,
 			false
@@ -210,7 +210,7 @@ Class DFP_Ads {
 		// Preps the script
 		wp_register_script(
 			$this->script_name,
-			$this->dir_uri . '/js/dfp-ads.js',
+			$this->dir_uri . '/assets/js/dfp-ads.min.js',
 			array( $this->google_ad_script_name, 'jquery' ),
 			false,
 			false
