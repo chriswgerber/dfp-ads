@@ -231,7 +231,7 @@ function dfp_get_url() {
  * @return array|string|int|bool
  */
 function dfp_get_settings_value( $setting ) {
-	$option_array = get_option( 'DFP_Ad_Positions' );
+	$option_array = get_option( 'DFP_Ads_Settings' );
 
 	return $option_array[$setting];
 }
