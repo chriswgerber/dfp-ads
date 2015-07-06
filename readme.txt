@@ -1,6 +1,6 @@
 === DFP Ad Manager ===
 
-Stable tag: trunk
+Stable tag: 0.2.1
 Contributors: chriswgerber
 Requires at least: 3.0.0
 Tested up to: 4.2.2
@@ -55,6 +55,10 @@ Submit your questions at [chriswgerber.com/contact/](http://www.chriswgerber.com
 == Upgrade Notice ==
 
 == Changelog ==
+
+= 0.2.1
+
+* Fixed issue where settings were not being called.
 
 = 0.2.0
 

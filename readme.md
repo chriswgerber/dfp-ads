@@ -85,6 +85,10 @@ Submit your questions at [chriswgerber.com/contact/](http://www.chriswgerber.com
 <a name="Changelog"></a>
 ## Changelog
 
+### 0.2.1
+
+* Fixed issue where settings were not being called.
+
 ### 0.2.0
 
 * Added functionality for importing DFP Ads
