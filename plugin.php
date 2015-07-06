@@ -13,7 +13,7 @@
  * Text Domain:       dfp-ads
  * Github Plugin URI: https://github.com/ThatGerber/dfp-ads
  * GitHub Branch:     stable
- * Version:           0.2.1
+ * Version:           0.2.3
  *
  * The Plugin File
  *
@@ -21,7 +21,7 @@
  * @since             0.0.1
  * @subpackage        DFP-Ads
  */
-define( 'EPG_AD_PLUGIN_VER', '0.2.1' );
+define( 'EPG_AD_PLUGIN_VER', '0.2.3' );
 
 /* Autoload */
 require_once 'vendor/autoload.php';

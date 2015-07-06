@@ -85,9 +85,20 @@ Submit your questions at [chriswgerber.com/contact/](http://www.chriswgerber.com
 <a name="Changelog"></a>
 ## Changelog
 
-### 0.2.1
+### 0.2.3
+
+* Bug fix
+
+### 0.2.2
 
 * Fixed issue where settings were not being called.
+
+### 0.2.1
+
+* Bug Fix: Added extra check to make sure plugin didn't attempt to add other CPTs as ad positions.
+* Enhancement: Added linting and uglifying to JS. Now serving minified JS.
+* Enhancement: Updated directory structure
+* Enhancement: Updated Readme to include screenshots and more information.
 
 ### 0.2.0
 
