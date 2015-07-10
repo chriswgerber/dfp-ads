@@ -85,6 +85,14 @@ Submit your questions at [chriswgerber.com/contact/](http://www.chriswgerber.com
 <a name="Changelog"></a>
 ## Changelog
 
+### 0.2.5
+
+* Bug Fix - Ad CPT was overriding page meta. Fix implemented resets post data after use of WP_Query.
+
+### 0.2.4
+
+* Fixes build
+
 ### 0.2.3
 
 * Bug fix
