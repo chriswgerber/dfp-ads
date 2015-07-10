@@ -26,7 +26,7 @@ function dfp_ad_position( $id ) {
 /**
  * Returns array of DFP_Ad_Position objects
  *
- * @since 0.0.1
+ * @since 0.2.5
  *
  * @return array
  */
@@ -52,6 +52,8 @@ function dfp_get_ad_positions() {
 			unset( $positions[$key] );
 		}
 	}
+
+	wp_reset_query();
 
 	return $positions;
 }
