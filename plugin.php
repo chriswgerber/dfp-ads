@@ -21,7 +21,7 @@
  * @since             0.0.1
  * @subpackage        DFP-Ads
  */
-define( 'EPG_AD_PLUGIN_VER', '0.2.3' );
+define( 'EPG_AD_PLUGIN_VER', '0.2.5' );
 
 /* Autoload */
 require_once 'vendor/autoload.php';
