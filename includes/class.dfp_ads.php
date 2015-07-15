@@ -206,6 +206,10 @@ Class DFP_Ads {
 			false,
 			false
 		);
+		/* Get the Final Ad Positions */
+		$ad_positions = apply_filters( 'pre_dfp_ads_to_js', $this);
+		// Send data to front end.
+		wp_localize_script( $this->google_ad_script_name, 'dfp_ad_object', array($ad_positions) );
 		wp_enqueue_script( $this->google_ad_script_name );
 		// Preps the script
 		wp_register_script(
@@ -215,10 +219,6 @@ Class DFP_Ads {
 			false,
 			false
 		);
-		/* Get the Final Ad Positions */
-		$ad_positions = apply_filters( 'pre_dfp_ads_to_js', $this);
-		// Send data to front end.
-		wp_localize_script( $this->script_name, 'dfp_ad_object', array($ad_positions) );
 		wp_enqueue_script( $this->script_name );
 	}
 
