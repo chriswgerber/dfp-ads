@@ -18,7 +18,7 @@ rsync -vah --exclude ".*/" vendor/ "$REPO_DIR/vendor"
 ###
 # Make directory of files to import
 ###
-rsync -hav --exclude ".*/" --files-from=build/wordpress-files.txt . "$REPO_DIR/"
+rsync -hav --exclude ".*/" --files-from=bin/wordpress-files.txt . "$REPO_DIR/"
 
 ###
 # Change Version Number
