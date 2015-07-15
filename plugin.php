@@ -68,7 +68,7 @@ $dfp_ads->set_account_id( dfp_get_settings_value( 'dfp_property_code' ) );
  * Enqueues the styles and scripts into WordPress. When this action runs
  * it also will grab all of the positions and other filtered in information
  */
-add_action( 'wp_enqueue_scripts', array( $dfp_ads, 'scripts_and_styles' ) );
+add_action( 'wp_enqueue_scripts', array( $dfp_ads, 'scripts_and_styles' ), 100 );
 
 /* Sets Menu Position. Default 20 */
 add_filter( 'dfp_ads_menu_position', ( function( $pos ) { return 79; }), 10 );
