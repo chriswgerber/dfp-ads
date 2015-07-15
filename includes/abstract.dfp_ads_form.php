@@ -144,6 +144,37 @@ Abstract Class DFP_Ads_Form {
     }
 
     /**
+     * Creates checkbox input
+     *
+     * @since 0.3.0
+     * @access public
+     *
+     * @param $args array
+     */
+    public function checkbox( $args ) {
+        // Why is it so nested?
+        $args  = $args[0];
+        $id    = $this->options_str . '[' . $args['id'] . ']';
+        $field = $args['field'];
+        $title = $args['title'];
+        $value = ( ! isset( $this->values[ $args['id'] ] ) ? '' : $this->values[ $args['id'] ] );
+        $checked = ( $value == 'on' ? 'checked' : '' );
+        ?>
+        <div>
+            <input type="<?php _e( $field, 'dfp-ads' ); ?>"
+                   id="<?php _e( $id, 'dfp-ads' ); ?>"
+                   name="<?php _e( $id, 'dfp-ads' ); ?>"
+                   <?php _e( $checked ); ?> />
+            <?php
+            if ( isset( $args['description'] ) ) {
+                echo '<p><em>'. $args['description'] . '</em></p>';
+            }
+            ?>
+        </div>
+        <?php
+    }
+
+    /**
      * Button Function
      *
      * Creates an HTML button.

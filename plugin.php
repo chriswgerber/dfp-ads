@@ -162,6 +162,16 @@ if ( is_admin() ) {
 			'description' => 'Enter your DoubleClick for Publishers Property Code.'
 		);
 
+		$fields['dfp_synchronous_tags'] = array(
+			'id'          => 'dfp_synchronous_tags',
+			'field'       => 'checkbox',
+			'callback'    => 'checkbox',
+			'title'       => 'Use Synchronous Ad Tags',
+			'section'     => 'general_settings',
+			'description' => '<em>DFP Ad Manager uses asynchronous tags by default. Choose this option if
+								your site is unable to support DoubleClick\'s asynchronous tags</em>'
+		);
+
 		return $fields;
 	} ) );
 

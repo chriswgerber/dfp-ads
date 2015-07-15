@@ -132,6 +132,7 @@ Class DFP_Ads {
 		$object->positions = dfp_get_ad_positions();
 		$object->script_name = null;
 		$object->dir_uri = null;
+		$object->asynch = ( dfp_get_settings_value('dfp_synchronous_tags') == 'on' ? false : true );
 
 		return $object;
 	}
