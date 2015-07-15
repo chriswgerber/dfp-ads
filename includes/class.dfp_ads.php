@@ -231,7 +231,9 @@ Class DFP_Ads {
 	 * @param $atts array
 	 */
 	public function shortcode( $atts ){
-		dfp_ad_position( $atts['id'] );
+		$position = dfp_get_ad_position( $atts['id'] );
+
+		return $position->get_position();
 	}
 
 }
