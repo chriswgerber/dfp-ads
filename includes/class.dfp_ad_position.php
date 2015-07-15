@@ -89,6 +89,18 @@ class DFP_Ad_Position {
 	public $targeting = array();
 
 	/**
+	 * The class to add to the ad position.
+	 *
+	 * @todo Implement extra div class in next version
+	 *
+	 * @since
+	 * @access public
+	 *
+	 * @var string
+	 */
+	private $position_class = 'dfp_ad_pos';
+
+	/**
 	 * PHP5 Constructor
 	 *
 	 * Constructs the object using the information provided by default in every installation. Values
@@ -132,7 +144,10 @@ class DFP_Ad_Position {
 	public function display_position( ) {
 		printf( __( '<!-- %1s -->', 'dfp-ads' ), $this->ad_name );
 		?>
-		<div id='<?php _e( $this->position_tag, 'dfp-ads'); ?>' class="<?php _e( $this->position_tag, 'dfp-ads'); ?> <?php _e( $this->ad_name, 'dfp-ads' ); ?>">
+		<div id='<?php _e( $this->position_tag, 'dfp-ads'); ?>'
+		     class=" <?php _e( $this->position_tag, 'dfp-ads'); ?>
+			<?php _e( $this->ad_name, 'dfp-ads' ); ?>
+			<?php _e( $this->position_class, 'dfp-ads' ); ?>">
 			<script type='text/javascript'>
 				googletag.cmd.push(function() { googletag.display('<?php _e( $this->position_tag, 'dfp-ads'); ?>'); });
 			</script>
