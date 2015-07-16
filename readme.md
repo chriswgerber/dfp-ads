@@ -85,6 +85,12 @@ Submit your questions at [chriswgerber.com/contact/](http://www.chriswgerber.com
 <a name="Changelog"></a>
 ## Changelog
 
+### 0.3.0
+
+* :new: Adds option to turn off asynchronous loading.
+* :cool: Adds class `dfp_ad_pos` to ad tags.
+* :bug: Fixes shortcode issue where content would always appear at the top of the content area.
+
 ### 0.2.5
 
 * Bug Fix - Ad CPT was overriding page meta. Fix implemented resets post data after use of WP_Query.

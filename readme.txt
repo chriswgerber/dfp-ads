@@ -1,6 +1,6 @@
 === DFP Ad Manager ===
 
-Stable tag: 0.2.5
+Stable tag: 0.3.0
 Contributors: chriswgerber
 Requires at least: 3.0.0
 Tested up to: 4.2.2
@@ -57,6 +57,12 @@ Submit your questions at [chriswgerber.com/contact/](http://www.chriswgerber.com
 There was an issue in the build process that has been fixed. Please upgrade immediately.
 
 == Changelog ==
+
+= 0.3.0
+
+* New - Adds option to turn off asynchronous loading.
+* Enhancement - Adds class `dfp_ad_pos` to ad tags.
+* Bugfix - Fixes shortcode issue where content would always appear at the top of the content area.
 
 = 0.2.5
 
