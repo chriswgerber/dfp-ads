@@ -21,21 +21,32 @@
  * @since             0.0.1
  * @subpackage        DFP-Ads
  */
-define( 'EPG_AD_PLUGIN_VER', '0.2.5' );
 
+/* Namespaces */
+use DFP_Ads\Globals_Container as DFP_Ads_Globals;
+use DFP_Ads\Admin\Form as DFP_Ads_Admin_Form;
+use DFP_Ads\DFP_Ads as DFP_Ads;
+use DFP_Ads\Post_Type as DFP_Ads_Post_Type;
+Use DFP_Ads\Position as DFP_Ad_Position;
+use DFP_Ads\Admin\Input as DFP_Ads_Input;
+use DFP_Ads\Admin\Settings_Form as DFP_Ads_Settings_Form;
+use DFP_Ads\Admin\Import_Form as DFP_Ads_Import_Form;
+use DFP_Ads\Admin as DFP_Ads_Admin;
 /* Autoload */
 require_once 'vendor/autoload.php';
+/* Includes */
+include 'includes/Globals_Container.php';
+include 'includes/Functions.php';
+include 'includes/DFP_Ads.php';
+include 'includes/Post_Type.php';
+include 'includes/Position.php';
 
-/* Library */
-include 'includes/helper_functions.php';
-include 'includes/abstract.dfp_ads_form.php';
-include 'includes/class.dfp_ads.php';
-include 'includes/class.dfp_ads_post_type.php';
-include 'includes/class.dfp_ads_input.php';
-include 'includes/class.dfp_ad_position.php';
-include 'includes/class.dfp_ads_settings_form.php';
-include 'includes/class.dfp_ads_import_form.php';
-include 'includes/class.dfp_ads_admin.php';
+include 'includes/admin/Form.php';
+include 'includes/admin/Input.php';
+include 'includes/admin/Settings_Form.php';
+include 'includes/admin/Import_Form.php';
+include 'includes/admin/Admin.php';
+
 include 'widget/widget.ad_position.php';
 
 /*
@@ -60,9 +71,10 @@ add_action( 'dfp_ads_metabox_top', array( $dfp_post_type, 'ad_position_shortcode
 add_action( 'dfp_ads_metabox_middle', array( $dfp_post_type, 'settings_table' ), 9 );
 
 /* Begin creating the new ads objects */
-$dfp_ads             = new DFP_Ads();
-$dfp_ads->dir_uri    = plugins_url( null, __FILE__ );
+$dfp_ads          = new DFP_Ads();
+$dfp_ads->dir_uri = plugins_url( null, __FILE__ );
 $dfp_ads->set_account_id( dfp_get_settings_value( 'dfp_property_code' ) );
+$dfp_ads->set_asynchronous_loading( dfp_get_settings_value( 'dfp_synchronous_tags' ) );
 
 /*
  * Enqueues the styles and scripts into WordPress. When this action runs
@@ -71,7 +83,9 @@ $dfp_ads->set_account_id( dfp_get_settings_value( 'dfp_property_code' ) );
 add_action( 'wp_enqueue_scripts', array( $dfp_ads, 'scripts_and_styles' ), 100 );
 
 /* Sets Menu Position. Default 20 */
-add_filter( 'dfp_ads_menu_position', ( function( $pos ) { return 79; }), 10 );
+add_filter( 'dfp_ads_menu_position', ( function ( $pos ) {
+	return 79;
+} ), 10 );
 
 /*
  * Adds input fields to the DFP_Ads post type.
@@ -91,7 +105,7 @@ add_filter( 'dfp_ads_menu_position', ( function( $pos ) { return 79; }), 10 );
  * )
  *
  */
-add_filter( DFP_Ads_Post_Type::FIELDS_FILTER, ( function( $fields ) {
+add_filter( DFP_Ads_Post_Type::FIELDS_FILTER, ( function ( $fields ) {
 	// Ad Code
 	$fields[] = new DFP_Ads_Input(
 		array(
@@ -134,15 +148,15 @@ add_filter( DFP_Ads_Post_Type::FIELDS_FILTER, ( function( $fields ) {
 	);
 
 	return $fields;
-}), 10 );
+} ), 10 );
 
-add_filter('pre_dfp_ads_to_js', array($dfp_ads, 'send_ads_to_js'), 1 );
+add_filter( 'pre_dfp_ads_to_js', array( $dfp_ads, 'send_ads_to_js' ), 1 );
 
 /* Settings/Import Page */
 if ( is_admin() ) {
 
 	/* Section headings */
-	add_filter( 'dfp_ads_settings_sections', ( function( $sections ) {
+	add_filter( 'dfp_ads_settings_sections', ( function ( $sections ) {
 		$sections['ad_positions'] = array(
 			'id'    => 'general_settings',
 			'title' => 'General Settings'
@@ -152,11 +166,11 @@ if ( is_admin() ) {
 	} ) );
 
 	/* Section Fields */
-	add_filter( 'dfp_ads_settings_fields', ( function( $fields ) {
+	add_filter( 'dfp_ads_settings_fields', ( function ( $fields ) {
 		$fields['dfp_property_code'] = array(
 			'id'          => 'dfp_property_code',
 			'field'       => 'text',
-            'callback'    => 'text',
+			'callback'    => 'text',
 			'title'       => 'DFP Property Code',
 			'section'     => 'general_settings',
 			'description' => 'Enter your DoubleClick for Publishers Property Code.'
@@ -175,15 +189,15 @@ if ( is_admin() ) {
 		return $fields;
 	} ) );
 
-    // Settings Page
-	$ad_form  = new DFP_Ads_Settings_Form;
-	$ad_admin = new DFP_Ads_Admin( $ad_form );
-    $ad_admin->menu_title  = 'Settings';
-    $ad_admin->plugin_slug = 'settings';
-    $ad_admin->options_str = 'DFP_Ads_Settings';
-    $ad_admin->options_grp = 'DFP_Ads_Settings_group';
+	// Settings Page
+	$ad_form               = new DFP_Ads_Settings_Form;
+	$ad_admin              = new DFP_Ads_Admin( $ad_form );
+	$ad_admin->menu_title  = 'Settings';
+	$ad_admin->plugin_slug = 'settings';
+	$ad_admin->options_str = 'DFP_Ads_Settings';
+	$ad_admin->options_grp = 'DFP_Ads_Settings_group';
 	$ad_admin->page_title  = 'Ad Manager Settings';
-    $ad_admin->user_cap    = 'manage_options';
+	$ad_admin->user_cap    = 'manage_options';
 	$ad_admin->post_type   = $dfp_post_type->name;
 	add_action( 'admin_menu', array( $ad_admin, 'register_menu_page' ) );
 	add_action( 'admin_init', array( $ad_admin, 'menu_page_init' ) );
@@ -191,7 +205,7 @@ if ( is_admin() ) {
 	/*
 	 * Import Page
 	 */
-	add_filter( 'dfp_ads_import_sections', ( function( $sections ) {
+	add_filter( 'dfp_ads_import_sections', ( function ( $sections ) {
 		$sections['import_data'] = array(
 			'id'    => 'import_data',
 			'title' => 'Import from CSV'
@@ -199,7 +213,7 @@ if ( is_admin() ) {
 
 		return $sections;
 	} ) );
-	add_filter( 'dfp_ads_import_fields', ( function( $fields ) {
+	add_filter( 'dfp_ads_import_fields', ( function ( $fields ) {
 		$fields['file_import'] = array(
 			'id'          => 'import_csv',
 			'field'       => 'file',
@@ -212,22 +226,22 @@ if ( is_admin() ) {
 		return $fields;
 	} ) );
 
-    $import_form = new DFP_Ads_Import_Form;
-    $ad_admin    = new DFP_Ads_Admin( $import_form );
-    $ad_admin->menu_title  = 'Import';
-    $ad_admin->plugin_slug = 'import';
-    $ad_admin->options_str = 'DFP_Ads_Import';
-    $ad_admin->options_grp = 'DFP_Ads_Import_group';
-    $ad_admin->page_title  = 'Import Positions';
-    $ad_admin->user_cap    = 'manage_options';
-    $ad_admin->post_type   = $dfp_post_type->name;
-    add_action( 'admin_menu', array( $ad_admin, 'register_menu_page' ) );
-    add_action( 'admin_init', array( $ad_admin, 'menu_page_init' ) );
+	$import_form           = new DFP_Ads_Import_Form;
+	$ad_admin              = new DFP_Ads_Admin( $import_form );
+	$ad_admin->menu_title  = 'Import';
+	$ad_admin->plugin_slug = 'import';
+	$ad_admin->options_str = 'DFP_Ads_Import';
+	$ad_admin->options_grp = 'DFP_Ads_Import_group';
+	$ad_admin->page_title  = 'Import Positions';
+	$ad_admin->user_cap    = 'manage_options';
+	$ad_admin->post_type   = $dfp_post_type->name;
+	add_action( 'admin_menu', array( $ad_admin, 'register_menu_page' ) );
+	add_action( 'admin_init', array( $ad_admin, 'menu_page_init' ) );
 }
 
 /*
  * Widget
  */
-add_action( 'widgets_init', ( function( $fields ) {
-	register_widget("DFP_Ads_Widget");
-}) );
+add_action( 'widgets_init', ( function ( $fields ) {
+	register_widget( "DFP_Ads_Widget" );
+} ) );

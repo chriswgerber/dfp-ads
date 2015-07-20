@@ -8,8 +8,11 @@
  * @package    WordPress
  * @subpackage DFP-Ads
  */
+namespace DFP_Ads;
 
-class DFP_Ads_Post_Type {
+use DFP_Ads\Globals_Container as DFP_Ads_Globals;
+
+class Post_Type {
 
 	/**
 	 * @const Name of the action that runs in the metabox fields.
@@ -79,7 +82,7 @@ class DFP_Ads_Post_Type {
 			'description'         => __( 'Ad Positions', 'dfp-ads' ),
 			'labels'              => $labels,
 			'supports'            => array( 'title' ),
-			'hierarchical'        => false,
+			'hierarchical'        => true,
 			'public'              => false,
 			'show_ui'             => true,
 			'show_in_menu'        => true,
@@ -138,25 +141,30 @@ class DFP_Ads_Post_Type {
 	 * @since 0.0.1
 	 * @access public
 	 *
-	 * @param wp_post $post The post object.
+	 * @param \WP_Post $post The post object.
 	 * @param int $post_id The post ID.
 	 */
 	public function save_meta_box( $post_id, $post ) {
-
-		$is_valid_nonce = ( isset( $_POST[ $this->nonce ] ) && wp_verify_nonce( $_POST[ $this->nonce ], basename( __FILE__ ) ) ) ? 'true' : 'false';
-
+		// Checks if nonce is valid
+		if (
+			DFP_Ads_Globals::post_var_exists( $this->nonce )
+			&& wp_verify_nonce( DFP_Ads_Globals::get_post_var( $this->nonce ), basename( __FILE__ ) )
+		) {
+			$is_valid_nonce = true;
+		} else {
+			$is_valid_nonce = false;
+		}
 		// Exits script depending on save status
 		if ( wp_is_post_autosave( $post_id ) || wp_is_post_revision( $post_id ) || !$is_valid_nonce ) {
 
 			return;
 		}
-		$NEW_POST = array();
 		// Checks for input and sanitizes/saves if needed
 		foreach ( dfp_get_fields() as $input ) {
-			if ( isset( $_POST[ $input->name ] ) ) {
-				$new_value = sanitize_text_field( $_POST[ $input->name ] );
+			if ( DFP_Ads_Globals::post_var_exists( $input->name ) ) {
+				$new_value = sanitize_text_field( DFP_Ads_Globals::get_post_var( $input->name ) );
 			} else {
-				$new_value = ( isset( $_POST[$input->name] ) ? true : false );
+				$new_value = ( DFP_Ads_Globals::post_var_exists( $input->name ) ? true : false );
 			}
 			update_post_meta( $post->ID, $input->name, $new_value );
 		}
@@ -254,10 +262,10 @@ class DFP_Ads_Post_Type {
 	 */
 	public function add_inputs() {
 		global $post;
-		/**
-		 * @param DFP_Ads_input $input
-		 */
 		foreach ( dfp_get_fields() as $input ) {
+			/**
+			 * @param Admin\Input $input
+			 */
 			$input->value = get_post_meta( $post->ID, $input->name, true );
 			$input->create_input();
 		}

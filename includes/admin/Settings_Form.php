@@ -10,8 +10,9 @@
  * @package    WordPress
  * @subpackage DFP-Ads
  */
+namespace DFP_Ads\Admin;
 
-class DFP_Ads_Settings_Form extends DFP_Ads_Form {
+class Settings_Form extends Form {
 
 	/**
 	 * Coagulates the functions into a form on the front-end.

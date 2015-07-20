@@ -10,7 +10,9 @@
  * @package    WordPress
  * @subpackage DFP-Ads
  */
-class DFP_Ads_Input {
+namespace DFP_Ads\Admin;
+
+class Input {
 
 	/**
 	 * Input Type

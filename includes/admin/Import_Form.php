@@ -10,9 +10,12 @@
  * @package    WordPress
  * @subpackage DFP-Ads
  */
+namespace DFP_Ads\Admin;
+
+use DFP_Ads\Globals_Container as DFP_Ads_Globals;
 use Ddeboer\DataImport\Reader\CsvReader;
 
-class DFP_Ads_Import_Form extends DFP_Ads_Form {
+class Import_Form extends Form {
 
 	public $csv_importer;
 
@@ -29,7 +32,7 @@ class DFP_Ads_Import_Form extends DFP_Ads_Form {
             <div class="postbox ">
                 <div class="inside">
 	                <?php
-	                $submit_value = ( isset( $_POST['submit'] ) ? $_POST['submit'] : '' );
+	                $submit_value = ( DFP_Ads_Globals::post_var_exists( 'submit' ) ? DFP_Ads_Globals::get_post_var('submit') : '' );
 	                switch ( $submit_value ) :
 		                // We're importing a CSV
 		                case 'Import CSV':
@@ -80,6 +83,11 @@ class DFP_Ads_Import_Form extends DFP_Ads_Form {
 		echo '</form>';
 	}
 
+	/**
+     * @TODO Add Labels
+     *
+	 * @param $reader
+     */
 	public function results_table( $reader ) {
 		?>
 		<table>
@@ -107,9 +115,10 @@ class DFP_Ads_Import_Form extends DFP_Ads_Form {
 
     public function import_data() {
         $data = get_transient( 'import_data' );
+        $new_positions = DFP_Ads_Globals::filter_post_var( 'code', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY );
         foreach ( $data as $position ) {
-            if ( array_key_exists ( $position['#Code'], $_POST['code'] ) ) {
-                echo 'Added Position <kbd>' . $position ['#Code'] . '</kbd>.<br />';
+            if ( array_key_exists ( $position['#Code'], $new_positions ) ) {
+                echo 'Added Position <kbd>' . $position['#Code'] . '</kbd>.<br />';
                 $this->add_position( $position );
             }
 

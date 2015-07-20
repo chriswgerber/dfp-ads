@@ -1,15 +1,17 @@
 <?php
-/** 
+/**
  * Helper functions for the plugin
  *
  * Various functions.
  *
- * @link  http://www.chriswgerber.com/dfp-ads
- * @since 0.0.1
+ * @link       http://www.chriswgerber.com/dfp-ads
+ * @since      0.0.1
  *
  * @package    WordPress
  * @subpackage DFP-Ads
  */
+use DFP_Ads\Position as DFP_Ad_Position;
+use DFP_Ads\Post_type as DFP_Ads_Post_Type;
 
 /**
  * Helper function to run the shortcode.
@@ -32,12 +34,15 @@ function dfp_ad_position( $id ) {
  */
 function dfp_get_ad_positions() {
 	$args = array(
-		'post_type' => 'dfp_ads',
-		'post_status' => 'publish',
-		'posts_per_page' => -1,
+		'post_type'           => 'dfp_ads',
+		'post_status'         => 'publish',
+		'posts_per_page'      => - 1,
 		'ignore_sticky_posts' => 1
 	);
-	$all_ads = new WP_Query($args);
+	/**
+	 * @var WP_Query $all_ads
+	 */
+	$all_ads = new WP_Query( $args );
 
 	$positions = array();
 	if ( $all_ads->have_posts() ) {
@@ -48,8 +53,8 @@ function dfp_get_ad_positions() {
 	}
 
 	foreach ( $positions as $key => $position ) {
-		if ( $position->post_id == NULL ) {
-			unset( $positions[$key] );
+		if ( $position->post_id == null ) {
+			unset( $positions[ $key ] );
 		}
 	}
 
@@ -70,7 +75,7 @@ function dfp_get_ad_positions() {
  * @return null|DFP_Ad_position
  */
 function dfp_get_ad_position( $id ) {
-	$position = apply_filters('get_dfp_ad_position', get_post( $id ) );
+	$position = apply_filters( 'get_dfp_ad_position', get_post( $id ) );
 
 	if ( $position !== null && $position->post_type === 'dfp_ads' ) {
 
@@ -93,7 +98,7 @@ function dfp_get_ad_position( $id ) {
  * @return null|DFP_Ad_position
  */
 function dfp_get_ad_position_by_name( $title ) {
-	$position = apply_filters('get_dfp_ad_position', get_page_by_title( $title, $output = OBJECT, $post_type = 'dfp_ads'  ) );
+	$position = apply_filters( 'get_dfp_ad_position', get_page_by_title( $title, $output = 'OBJECT', $post_type = 'dfp_ads' ) );
 
 	return ( $position->post_type !== 'dfp_ads' ? false : new DFP_Ad_Position( $position->ID ) );
 }
@@ -122,7 +127,7 @@ function dfp_get_fields() {
 function dfp_get_ad_sizes( $size_string ) {
 	$sizes_array = array();
 	// Check if there are any sizes to explode
-	if ( strlen( $size_string ) > 0 ){
+	if ( strlen( $size_string ) > 0 ) {
 		$sizes = explode( ',', $size_string );
 	} else {
 		return null;
@@ -145,12 +150,13 @@ function dfp_get_ad_sizes( $size_string ) {
  *
  * @since 0.0.1
  *
- * @param       array      $input      Input array
+ * @param array $array Input array
+ *
  * @return array
  */
 function dfp_intval_array( $array ) {
 
-	if ( !is_array( $array ) ) {
+	if ( ! is_array( $array ) ) {
 
 		return intval( $array );
 	}
@@ -163,26 +169,30 @@ function dfp_intval_array( $array ) {
  *
  * It is suggested that you do not rely on this. It will disappear.
  *
- * @since 0.0.1
+ * @since       0.0.1
  *
  * @author      Jonas John
  * @version     0.2
  * @link        http://www.jonasjohn.de/snippets/php/trim-array.htm
- * @param       array      $input      Input array
+ *
+ * @param       array $input Input array
+ *
  * @return array
  */
-function dfp_trim_array($input){
+function dfp_trim_array( $input ) {
 
-	if ( !is_array( $input ) ) {
+	if ( ! is_array( $input ) ) {
 
-		return trim($input);
+		return trim( $input );
 	}
 
-	return array_map('dfp_trim_array', $input);
+	return array_map( 'dfp_trim_array', $input );
 }
 
 /**
  * Creates Shortcode Input Field
+ *
+ * @TODO  Add Labels
  *
  * @since 0.0.1
  *
@@ -190,14 +200,20 @@ function dfp_trim_array($input){
  */
 function dfp_ads_shortcode_field( $post_id ) {
 	?>
-	<input style="text-align:center;" type="text" readonly value="<?php printf( __('[dfp_ads id=%1s]', 'dfp-ads'), $post_id); ?>" />
+	<input style="text-align:center;" type="text" readonly
+	       value="<?php printf( __( '[dfp_ads id=%1s]', 'dfp-ads' ), $post_id ); ?>"/>
 	<?php
 }
 
 /**
  * Uses Global Post
  *
- * @since 0.0.1
+ * @deprecated deprecated since version 0.3.1
+ *
+ * Will be phased out before version 0.4.0. Has been replaced with WordPress
+ * core functionality instead.
+ *
+ * @since      0.0.1
  *
  * @return string
  */
@@ -206,16 +222,11 @@ function dfp_get_url() {
 	if ( isset( $_SERVER["HTTPS"] ) && $_SERVER["HTTPS"] == "on" ) {
 		$pageURL .= "s";
 	}
-
 	$pageURL .= "://";
-
-	if ($_SERVER["SERVER_PORT"] != "80") {
-
-		$pageURL .= $_SERVER["SERVER_NAME"].":".$_SERVER["SERVER_PORT"].$_SERVER["REQUEST_URI"];
-
+	if ( $_SERVER["SERVER_PORT"] != "80" ) {
+		$pageURL .= $_SERVER["SERVER_NAME"] . ":" . $_SERVER["SERVER_PORT"] . $_SERVER["REQUEST_URI"];
 	} else {
-
-		$pageURL .= $_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"];
+		$pageURL .= $_SERVER["SERVER_NAME"] . $_SERVER["REQUEST_URI"];
 	}
 
 	return $pageURL;
@@ -230,26 +241,26 @@ function dfp_get_url() {
  *
  * @param $setting string Setting to return a value
  *
- * @return array|string|int|bool
+ * @return array|string|int|bool|null
  */
 function dfp_get_settings_value( $setting ) {
 	$option_array = get_option( 'DFP_Ads_Settings' );
 
-	return $option_array[$setting];
+	return ( isset( $option_array[ $setting ] ) ? $option_array[ $setting ] : null );
 }
 
 /**
  * Creates Select Options for widget
  *
- * @since 0.2.0
+ * @since  0.2.0
  * @access public
  *
- * @param $value Value
+ * @param int|string $value Value
  */
 function dfp_ad_select_options( $value ) {
 	echo '<option value="false">Select Position</option>';
-    $positions = dfp_get_ad_positions();
-    foreach ( $positions as $position ) {
-        echo '<option' . selected( $value, $position->post_id ) . ' value="' . $position->post_id . '">(' . $position->post_id  . ') ' . $position->title . '</option>';
-    }
+	$positions = dfp_get_ad_positions();
+	foreach ( $positions as $position ) {
+		echo '<option' . selected( $value, $position->post_id ) . ' value="' . $position->post_id . '">(' . $position->post_id . ') ' . $position->title . '</option>';
+	}
 }
