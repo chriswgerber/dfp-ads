@@ -80,7 +80,7 @@ Class DFP_Ads {
 	 * @var array
 	 */
 	public $page_targeting = array(
-		'Page'     => '',
+		'Page'     => array(),
 		'Category' => array(),
 		'Tag'      => array(),
 	);
@@ -92,7 +92,6 @@ Class DFP_Ads {
 	 * @access public
 	 */
 	public function __construct() {
-
 		/** Creates DFP_Ads Shortcode */
 		add_shortcode( 'dfp_ads', array( $this, 'shortcode' ) );
 	}
@@ -214,11 +213,13 @@ Class DFP_Ads {
 	 */
 	protected function get_category_targeting() {
 		global $post;
-		$targets    = array();
-		$categories = get_the_category( $post->ID );
-		foreach ( $categories as $c ) {
-			$cat       = get_category( $c );
-			$targets[] = $cat->name;
+		$targets = array();
+		if ( $post ) {
+			$categories = get_the_category( $post->ID );
+			foreach ( $categories as $c ) {
+				$cat       = get_category( $c );
+				$targets[] = $cat->name;
+			}
 		}
 
 		return ( count( $targets ) < 1 ? '' : $targets );
@@ -235,10 +236,12 @@ Class DFP_Ads {
 	protected function get_tag_targeting() {
 		global $post;
 		$targets = array();
-		$tags    = get_the_tags( $post->ID );
-		if ( $tags ) {
-			foreach ( $tags as $tag ) {
-				$targets[] = $tag->name;
+		if ( $post ) {
+			$tags = get_the_tags( $post->ID );
+			if ( $tags ) {
+				foreach ( $tags as $tag ) {
+					$targets[] = $tag->name;
+				}
 			}
 		}
 
