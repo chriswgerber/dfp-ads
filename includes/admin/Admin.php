@@ -2,68 +2,69 @@
 /**
  * DFP Ads Admin
  *
- * @since 0.0.1
+ * @since      0.0.1
  *
  * @package    WordPress
  * @subpackage DFP-Ads
  */
+namespace DFP_Ads;
 
-class DFP_Ads_Admin {
+class Admin {
 
-    /**
-     * Title of the menu page
-     *
-     * @since 0.2.0
-     * @access public
-     *
-     * @var string
-     */
-    public $menu_title;
+	/**
+	 * Title of the menu page
+	 *
+	 * @since  0.2.0
+	 * @access public
+	 *
+	 * @var string
+	 */
+	public $menu_title;
 
-    /**
-     * User capability necessary to access page
-     *
-     * @since 0.2.0
-     * @access public
-     *
-     * @var string
-     */
-    public $user_cap;
+	/**
+	 * User capability necessary to access page
+	 *
+	 * @since  0.2.0
+	 * @access public
+	 *
+	 * @var string
+	 */
+	public $user_cap;
 
-    /**
-     * Slug for the page
-     *
-     * @since 0.2.0
-     * @access public
-     *
-     * @var string
-     */
-    public $plugin_slug;
+	/**
+	 * Slug for the page
+	 *
+	 * @since  0.2.0
+	 * @access public
+	 *
+	 * @var string
+	 */
+	public $plugin_slug;
 
-    /**
-     * String identifier for the options
-     *
-     * @since 0.2.0
-     * @access public
-     *
-     * @var string
-     */
-    public $options_str;
+	/**
+	 * String identifier for the options
+	 *
+	 * @since  0.2.0
+	 * @access public
+	 *
+	 * @var string
+	 */
+	public $options_str;
 
-    /**
-     * String identifier for the options group
-     *
-     * @since 0.2.0
-     * @access public
-     *
-     * @var string
-     */
-    public $options_grp;
+	/**
+	 * String identifier for the options group
+	 *
+	 * @since  0.2.0
+	 * @access public
+	 *
+	 * @var string
+	 */
+	public $options_grp;
 
 	/**
 	 * Settings Page Title
 	 *
-	 * @since 0.0.1
+	 * @since  0.0.1
 	 * @access public
 	 *
 	 * @var string
@@ -73,7 +74,7 @@ class DFP_Ads_Admin {
 	/**
 	 * Sections of content
 	 *
-	 * @since 0.0.1
+	 * @since  0.0.1
 	 * @access public
 	 *
 	 * @var array
@@ -81,19 +82,19 @@ class DFP_Ads_Admin {
 	public $sections = array();
 
 	/**
-     * Stores the Form creation object. Form creation functions run through here.
-     *
-     * @since 0.0.1
-     * @access public
-     *
-	 * @var DFP_Ads_Form
+	 * Stores the Form creation object. Form creation functions run through here.
+	 *
+	 * @since  0.0.1
+	 * @access public
+	 *
+	 * @var Admin\Form
 	 */
 	public $form;
 
 	/**
 	 * Individual fields to be added
 	 *
-	 * @since 0.0.1
+	 * @since  0.0.1
 	 * @access public
 	 *
 	 * @var array
@@ -103,7 +104,7 @@ class DFP_Ads_Admin {
 	/**
 	 * Created by page registration
 	 *
-	 * @since 0.0.1
+	 * @since  0.0.1
 	 * @access public
 	 *
 	 * @var string $hook_suffix
@@ -113,45 +114,45 @@ class DFP_Ads_Admin {
 	/**
 	 * Tells the settings page which menu item to queue on
 	 *
-	 * @since 0.0.1
+	 * @since  0.0.1
 	 * @access public
 	 *
 	 * @var string
 	 */
 	public $post_type;
 
-    /**
-     * Form Input Values
-     *
-     * @since 0.2.0
-     * @access public
-     *
-     * @var array
-     */
-    public $values;
+	/**
+	 * Form Input Values
+	 *
+	 * @since  0.2.0
+	 * @access public
+	 *
+	 * @var array
+	 */
+	public $values;
 
 	/**
 	 * PHP5 Constructor
-     *
-     * @since 0.0.1
-     * @access public
 	 *
-	 * @param DFP_Ads_Form $form Handles form functions.
+	 * @since  0.0.1
+	 * @access public
+	 *
+	 * @param Admin\Form $form Handles form functions.
 	 */
-	public function __construct( DFP_Ads_Form $form ) {
+	public function __construct( Admin\Form $form ) {
 		$this->form = $form;
 	}
 
 	/**
 	 * Register the Menu Page.
 	 *
-	 * @since 0.0.1
+	 * @since  0.0.1
 	 * @access public
 	 */
 	public function register_menu_page() {
-        $this->sections = apply_filters( strtolower( $this->options_str ) . '_sections', array() );
-        $this->fields   = apply_filters( strtolower( $this->options_str ) . '_fields', array() );
-        $this->values   = get_option( $this->options_str );
+		$this->sections    = apply_filters( strtolower( $this->options_str ) . '_sections', array() );
+		$this->fields      = apply_filters( strtolower( $this->options_str ) . '_fields', array() );
+		$this->values      = get_option( $this->options_str );
 		$this->hook_suffix = add_submenu_page(
 			'edit.php?post_type=' . $this->post_type,
 			$this->page_title,     // Page Title
@@ -175,21 +176,21 @@ class DFP_Ads_Admin {
 	public function menu_page_init() {
 		// Register settings
 		$this->register_settings();
-        // Creates the settings var to be referred to
-        $this->add_sections();
+		// Creates the settings var to be referred to
+		$this->add_sections();
 		// Errors
-		add_action( 'admin_notices', array($this, 'add_errors') );
+		add_action( 'admin_notices', array( $this, 'add_errors' ) );
 	}
 
 	/**
 	 * Displays Form. WordPress requires a function be used to display the input form.
 	 *
-	 * @since 0.0.1
+	 * @since  0.0.1
 	 * @access public
 	 */
 	public function form() {
-        $this->form->values            = $this->values;
-        $this->form->options_str       = $this->options_str;
+		$this->form->values            = $this->values;
+		$this->form->options_str       = $this->options_str;
 		$this->form->title             = $this->page_title;
 		$this->form->settings_fields   = $this->options_grp;
 		$this->form->settings_sections = $this->plugin_slug;
@@ -200,14 +201,14 @@ class DFP_Ads_Admin {
 	/**
 	 * Register the plugin settings in WordPress.
 	 *
-	 * @since 0.0.1
+	 * @since  0.0.1
 	 * @access public
 	 */
 	public function register_settings() {
 		// register our settings
 		register_setting(
-            $this->options_grp,
-            $this->options_str,
+			$this->options_grp,
+			$this->options_str,
 			array( $this, 'options_validate' )
 		);
 	}
@@ -215,7 +216,7 @@ class DFP_Ads_Admin {
 	/**
 	 * Create form for plugin settings.
 	 *
-	 * @since 0.0.1
+	 * @since  0.0.1
 	 * @access public
 	 */
 	public function add_sections() {
@@ -236,9 +237,9 @@ class DFP_Ads_Admin {
 	/**
 	 * Sanitize and validate input. Accepts an array, return a sanitized array.
 	 *
-	 * @TODO Set up validation
+	 * @TODO   Set up validation
 	 *
-	 * @since 0.0.1
+	 * @since  0.0.1
 	 * @access public
 	 *
 	 * @param array $input
@@ -253,7 +254,7 @@ class DFP_Ads_Admin {
 	/**
 	 * Basic section callback. Creates the settings header.
 	 *
-	 * @since 0.0.1
+	 * @since  0.0.1
 	 * @access public
 	 *
 	 * @param $args array
@@ -265,28 +266,30 @@ class DFP_Ads_Admin {
 	/**
 	 * Creates input
 	 *
-	 * @since 0.0.1
+	 * @TODO Add Labels
+	 *
+	 * @since  0.0.1
 	 * @access public
 	 *
 	 * @param $args array
 	 */
 	public function basic_input_callback( $args ) {
 		// Why is it so nested?
-		$args   = $args[0];
+		$args = $args[0];
 		// Field values
 		$id     = $this->options_str . '[' . $args['id'] . ']';
 		$title  = $args['title'];
 		$values = get_option( $this->options_str );
-		$value  = $values[$args['id']];
+		$value  = $values[ $args['id'] ];
 		?>
 		<div>
 			<input type="<?php echo $args->field; ?>"
 			       id="<?php _e( $id, 'dfp-ads' ); ?>"
 			       name="<?php _e( $id, 'dfp-ads' ); ?>"
-			       value="<?php _e( $value, 'dfp-ads' ); ?>" />
+			       value="<?php _e( $value, 'dfp-ads' ); ?>"/>
 			<?php
 			if ( isset( $args['description'] ) ) {
-				echo '<p><em>'. $args['description'] . '</em></p>';
+				echo '<p><em>' . $args['description'] . '</em></p>';
 			}
 			?>
 		</div>
@@ -296,11 +299,11 @@ class DFP_Ads_Admin {
 	/**
 	 * Creates the settings sections
 	 *
-	 * @since 0.0.1
+	 * @since  0.0.1
 	 * @access protected
 	 *
 	 * @param array $section ID = input ID,
-     *                       Title = Name of field,
+	 *                       Title = Name of field,
 	 */
 	protected function create_settings_section( $section ) {
 		add_settings_section(
@@ -314,31 +317,31 @@ class DFP_Ads_Admin {
 	/**
 	 * Creates settings fields
 	 *
-	 * @since 0.0.1
+	 * @since  0.0.1
 	 * @access protected
 	 *
 	 * @param array $settings
 	 *              ID = input ID,
 	 *              Title = Name of field,
 	 *              Field = Type of field,
-     *              Callback = Callback function
+	 *              Callback = Callback function
 	 *              Description = Description below field
 	 */
 	protected function create_settings_field( $settings ) {
-        add_settings_field(
+		add_settings_field(
 			$settings['id'], // ID
 			$settings['title'], // Title
-            array( $this->form, $settings['callback'] ), // Callback
-            $this->plugin_slug, // Page
+			array( $this->form, $settings['callback'] ), // Callback
+			$this->plugin_slug, // Page
 			$settings['section'], // Section
-			array($settings) // Args
+			array( $settings ) // Args
 		);
 	}
 
 	/**
 	 * Queue up the errors
 	 *
-	 * @since 0.0.1
+	 * @since  0.0.1
 	 * @access public
 	 */
 	public function add_errors() {
@@ -350,15 +353,15 @@ class DFP_Ads_Admin {
 	 *
 	 * Will warn users of an issue or add a message saying it was successful.
 	 *
-	 * @since 0.0.1
+	 * @since  0.0.1
 	 * @access public
 	 *
 	 * @param string $message Message to send to user
 	 * @param string $type    Type of Message: Error / Updated
 	 */
-	public function new_error($message, $type) {
+	public function new_error( $message, $type ) {
 		add_settings_error(
-            $this->options_str,
+			$this->options_str,
 			'settings_updated',
 			$message,
 			$type

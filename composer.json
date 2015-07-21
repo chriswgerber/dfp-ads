@@ -2,11 +2,13 @@
     "name": "ThatGerber/dfp-ads",
     "description": "WordPress plugin for DoubleClick for Publishers",
     "require": {
+        "php": ">=5.3",
         "ddeboer/data-import": "@stable"
     },
     "require-dev": {
         "phpunit/phpunit": "4.6.*",
-        "codeclimate/php-test-reporter": "dev-master"
+        "phpdocumentor/phpdocumentor": "dev-master",
+        "satooshi/php-coveralls": "dev-master"
     },
     "license": "GPL-2.0+",
     "authors": [
