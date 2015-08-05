@@ -1,10 +1,10 @@
 <?php
+
 /**
  * Ad Position Widget
  *
  * Simple widget to include an ad position
  */
-
 class DFP_Ads_Widget extends WP_Widget {
 
 	/**
@@ -50,27 +50,15 @@ class DFP_Ads_Widget extends WP_Widget {
 			$this->get_widget_slug(),
 			__( 'DFP Ad Position', $this->get_widget_slug() ),
 			array(
-				'classname'  => $this->get_widget_slug().'-class',
+				'classname'   => $this->get_widget_slug() . '-class',
 				'description' => __( 'Displays an ad position', $this->get_widget_slug() )
 			)
 		);
 
 		// Refreshing the widget's cached output with each new post
-		add_action( 'save_post',    array( $this, 'flush_widget_cache' ) );
+		add_action( 'save_post', array( $this, 'flush_widget_cache' ) );
 		add_action( 'deleted_post', array( $this, 'flush_widget_cache' ) );
 		add_action( 'switch_theme', array( $this, 'flush_widget_cache' ) );
-	}
-
-	/**
-	 * Return the widget slug.
-	 *
-	 * @since  0.0.1
-	 * @access public
-	 *
-	 * @return    Plugin slug variable.
-	 */
-	public function get_widget_slug() {
-		return $this->widget_slug;
 	}
 
 	/**
@@ -79,22 +67,37 @@ class DFP_Ads_Widget extends WP_Widget {
 	 * @since  0.0.1
 	 * @access public
 	 *
-	 * @param array args  The array of form elements
-	 * @param array instance The current instance of the widget
+	 * @param array $args     The array of form elements
+	 * @param array $instance The current instance of the widget
 	 */
 	public function widget( $args, $instance ) {
 		echo $args['before_widget'];
-		do_shortcode( '[dfp_ads id=' . __($instance['position_title']) . ']' );
+		dfp_ad_position( $instance['position_title'] );
 		echo $args['after_widget'];
 	}
+
 	/**
-	 * Flushes the cache
+	 * Generates the administration form for the widget.
 	 *
 	 * @since  0.0.1
 	 * @access public
+	 *
+	 * @param array instance The array of keys and values for the widget.
+	 *
+	 * @return mixed
 	 */
-	public function flush_widget_cache() {
-		wp_cache_delete( $this->get_widget_slug(), 'widget' );
+	public function form( $instance ) {
+		$id    = ( $this->get_field_id( 'position_title' ) !== null ? $this->get_field_id( 'position_title' ) : '' );
+		$name  = ( $this->get_field_name( 'position_title' ) !== null ? $this->get_field_name( 'position_title' ) : '' );
+		$value = ( isset( $instance['position_title'] ) ? $instance['position_title'] : '' );
+		?>
+		<h4><label for="<?php _e( $id ); ?>"><?php _e( 'Ad Position', 'dfp-ads' ); ?></label></h4>
+		<p>
+			<select class="widefat" name="<?php _e( $name ); ?>" id="<?php _e( $id ); ?>">
+				<?php dfp_ad_select_options( $value ); ?>
+			</select>
+		</p>
+		<?php
 	}
 
 	/**
@@ -111,34 +114,33 @@ class DFP_Ads_Widget extends WP_Widget {
 	public function update( $new_instance, $old_instance ) {
 
 		foreach ( $this->fields as $field ) {
-			$instance[$field] = $new_instance[$field];
+			$instance[ $field ] = $new_instance[ $field ];
 		}
 
 		return $instance;
 	}
 
 	/**
-	 * Generates the administration form for the widget.
+	 * Return the widget slug.
 	 *
 	 * @since  0.0.1
 	 * @access public
 	 *
-	 * @param array instance The array of keys and values for the widget.
-	 *
-	 * @return mixed
+	 * @return string Plugin slug variable.
 	 */
-	public function form( $instance ) {
-		$id    = ( $this->get_field_id('position_title') !== null ? $this->get_field_id('position_title') : '' );
-		$name  = ( $this->get_field_name('position_title') !== null ? $this->get_field_name('position_title') : '' );
-		$value = ( isset( $instance['position_title'] ) ? $instance['position_title'] : '' );
-		?>
-		<h4><label for="<?php _e( $id ); ?>"><?php _e( 'Ad Position', 'dfp-ads'); ?></label></h4>
-		<p>
-			<select class="widefat" name="<?php _e( $name ); ?>" id="<?php _e( $id ); ?>">
-				<?php dfp_ad_select_options( $value ); ?>
-			</select>
-		</p>
-		<?php
+	public function get_widget_slug() {
+
+		return $this->widget_slug;
+	}
+
+	/**
+	 * Flushes the cache
+	 *
+	 * @since  0.0.1
+	 * @access public
+	 */
+	public function flush_widget_cache() {
+		wp_cache_delete( $this->get_widget_slug(), 'widget' );
 	}
 
 }
