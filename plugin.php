@@ -13,7 +13,7 @@
  * Text Domain:       dfp-ads
  * Github Plugin URI: https://github.com/ThatGerber/dfp-ads
  * GitHub Branch:     stable
- * Version:           0.3.0
+ * Version:           0.3.1
  *
  * The Plugin File
  *
@@ -21,18 +21,11 @@
  * @since             0.0.1
  * @subpackage        DFP-Ads
  */
-/* Namespaces */
-use DFP_Ads\DFP_Ads as DFP_Ads;
-use DFP_Ads\Post_Type as DFP_Ads_Post_Type;
-use DFP_Ads\Admin\Input as DFP_Ads_Input;
-use DFP_Ads\Admin\Settings_Form as DFP_Ads_Settings_Form;
-use DFP_Ads\Admin\Import_Form as DFP_Ads_Import_Form;
-use DFP_Ads\Admin as DFP_Ads_Admin;
 /* Autoload */
 require_once 'vendor/autoload.php';
 /* Includes */
-include 'includes/Globals_Container.php';
 include 'includes/Functions.php';
+include 'includes/Globals_Container.php';
 include 'includes/DFP_Ads.php';
 include 'includes/Post_Type.php';
 include 'includes/Position.php';
@@ -42,6 +35,14 @@ include 'includes/admin/Settings_Form.php';
 include 'includes/admin/Import_Form.php';
 include 'includes/admin/Admin.php';
 include 'widget/widget.ad_position.php';
+
+/* Namespaces */
+use DFP_Ads\DFP_Ads as DFP_Ads;
+use DFP_Ads\Post_Type as DFP_Ads_Post_Type;
+use DFP_Ads\Admin\Input as DFP_Ads_Input;
+use DFP_Ads\Admin\Settings_Form as DFP_Ads_Settings_Form;
+use DFP_Ads\Admin\Import_Form as DFP_Ads_Import_Form;
+use DFP_Ads\Admin as DFP_Ads_Admin;
 /*
  * Initialization for Post Type
  */

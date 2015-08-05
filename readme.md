@@ -80,10 +80,15 @@ Below are a list of items that need to be completed before the plugin is ready f
 <a name="FAQ"></a>
 ## Frequently Asked Questions
 
-Submit your questions at [chriswgerber.com/contact/](http://www.chriswgerber.com/contact/)
+Submit your questions at [www.chriswgerber.com/contact/](http://www.chriswgerber.com/contact/)
 
 <a name="Changelog"></a>
 ## Changelog
+
+### 0.3.1
+
+* :bug: :gun: Widget not displays ad position correctly.
+* :100: Various code quality improvements.
 
 ### 0.3.0
 
