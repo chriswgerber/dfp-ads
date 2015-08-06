@@ -87,7 +87,7 @@ Submit your questions at [www.chriswgerber.com/contact/](http://www.chriswgerber
 
 ### 0.3.1
 
-* :bug: :gun: Widget not displays ad position correctly.
+* :bug::gun: Fixes widget not displaying ad position correctly.
 * :100: Various code quality improvements.
 
 ### 0.3.0
