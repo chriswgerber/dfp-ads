@@ -1,13 +1,16 @@
 ---
-languages:
-  JavaScript: true
-  PHP: true
 exclude_paths:
-- bin/
-- build/
-- node_modules/
-- vendor/
-- tests/
+- bin/**
+- build/**
+- node_modules/**
+- vendor/**
+- tests/**
 engines:
   phpcodesniffer:
     enabled: true
+  eslint:
+    enabled: true
+ratings:
+   paths:
+   - assets/**
+   - includes/**
