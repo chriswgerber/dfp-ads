@@ -1,6 +1,7 @@
 index.php
 plugin.php
 readme.txt
+LICENSE
 assets/
 includes/
 vendor/

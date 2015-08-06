@@ -22,11 +22,6 @@ composer update --no-dev
 ### Make directory of files to import
 rsync -hav --exclude ".*/" --files-from=bin/wordpress-files.txt . "$REPO_DIR/trunk"
 
-### Change Version Number
-echo "Updating version to $VERSION";
-sed -i '' "s|\* Version:           *.*.*|\* Version:           $VERSION|" "$REPO_DIR/trunk/plugin.php"
-sed -i '' "s|Stable tag: *.*.*|Stable tag: $VERSION|" "$REPO_DIR/trunk/readme.txt"
-
 ### Updating Repo
 cd $REPO_DIR;
 svn stat
@@ -36,14 +31,14 @@ if [ "$CONFIRM" == 'y' ]; then
     echo "Please enter the commit message.";
     read MESSAGE;
     svn ci -m "$MESSAGE";
-fi
 
-### Add New Release
-echo -n "Is this a release version? (y/n) "
-read CONFIRM_VER
-if [ "$CONFIRM_VER" == 'y' ]; then
-    svn cp trunk tags/"$VERSION";
-    svn ci -m "Version $VERSION";
+    ### Add New Release
+    echo -n "Is this a release version? (y/n) "
+    read CONFIRM_VER
+    if [ "$CONFIRM_VER" == 'y' ]; then
+        svn cp trunk tags/"$VERSION";
+        svn ci -m "Version $VERSION";
+    fi
 fi
 
 ### Documentation
