@@ -3,4 +3,5 @@ plugin.php
 readme.txt
 assets/
 includes/
+vendor/
 widget/
