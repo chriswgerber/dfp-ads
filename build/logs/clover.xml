@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1437502734">
-  <project timestamp="1437502734">
+<coverage generated="1437507230">
+  <project timestamp="1437507230">
     <file name="/srv/www/wordpress-develop/src/wp-admin/includes/bookmark.php">
       <line num="17" type="stmt" count="0"/>
       <line num="29" type="stmt" count="0"/>
@@ -49686,7 +49686,7 @@
     </file>
     <file name="/vagrant/www/wp-dev/htdocs/wp-content/plugins/dfp-ads/vendor/composer/autoload_real.php">
       <class name="ComposerAutoloaderInitaa6e4f600def21343b83630080d9e67f" namespace="global">
-        <metrics methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="27" coveredstatements="0" elements="29" coveredelements="0"/>
+        <metrics methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="24" coveredstatements="0" elements="26" coveredelements="0"/>
       </class>
       <line num="9" type="method" name="loadClassLoader" crap="6" count="0"/>
       <line num="11" type="stmt" count="0"/>
@@ -49713,13 +49713,9 @@
       <line num="39" type="stmt" count="0"/>
       <line num="41" type="stmt" count="0"/>
       <line num="43" type="stmt" count="0"/>
-      <line num="44" type="stmt" count="0"/>
-      <line num="45" type="stmt" count="0"/>
-      <line num="46" type="stmt" count="0"/>
-      <line num="48" type="stmt" count="0"/>
-      <line num="54" type="stmt" count="0"/>
-      <line num="55" type="stmt" count="0"/>
-      <metrics loc="55" ncloc="53" classes="1" methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="29" coveredstatements="0" elements="31" coveredelements="0"/>
+      <line num="49" type="stmt" count="0"/>
+      <line num="50" type="stmt" count="0"/>
+      <metrics loc="55" ncloc="53" classes="1" methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="25" coveredstatements="0" elements="27" coveredelements="0"/>
     </file>
     <file name="/vagrant/www/wp-dev/htdocs/wp-content/plugins/dfp-ads/widget/widget.ad_position.php">
       <class name="DFP_Ads_Widget" namespace="global" fullPackage="DFP.Ads">
@@ -49759,6 +49755,6 @@
       <line num="142" type="stmt" count="0"/>
       <metrics loc="143" ncloc="61" classes="1" methods="6" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="26" coveredstatements="3" elements="32" coveredelements="5"/>
     </file>
-    <metrics files="125" loc="135721" ncloc="75535" classes="126" methods="1211" coveredmethods="50" conditionals="0" coveredconditionals="0" statements="47790" coveredstatements="2077" elements="49001" coveredelements="2127"/>
+    <metrics files="125" loc="135721" ncloc="75535" classes="126" methods="1211" coveredmethods="50" conditionals="0" coveredconditionals="0" statements="47786" coveredstatements="2077" elements="48997" coveredelements="2127"/>
   </project>
 </coverage>
