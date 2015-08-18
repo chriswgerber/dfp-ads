@@ -36,10 +36,6 @@ include 'includes/admin/Import_Form.php';
 include 'includes/admin/Admin.php';
 include 'widget/widget.ad_position.php';
 
-if ( ! defined( 'DFP_CONCAT_SCRIPTS' ) ) {
-	define( 'DFP_CONCAT_SCRIPTS', true );
-}
-
 /* Namespaces */
 use DFP_Ads\DFP_Ads as DFP_Ads;
 use DFP_Ads\Post_Type as DFP_Ads_Post_Type;
@@ -48,6 +44,9 @@ use DFP_Ads\Admin\Settings_Form as DFP_Ads_Settings_Form;
 use DFP_Ads\Admin\Import_Form as DFP_Ads_Import_Form;
 use DFP_Ads\Admin as DFP_Ads_Admin;
 
+if ( ! defined( 'DFP_CONCAT_SCRIPTS' ) ) {
+	define( 'DFP_CONCAT_SCRIPTS', true );
+}
 /*
  * Initialization for Post Type
  */
