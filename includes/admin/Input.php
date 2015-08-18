@@ -101,41 +101,36 @@ class Input {
 	 * in a < table > tag.
 	 *
 	 * @access public
-	 * @since  0.0.1
+	 * @since 0.0.1
 	 *
 	 * returns an HTML input
 	 */
-	public function create_input() {
+	public function create_input(){
 		global $post;
 		?>
 		<tr>
-			<td><label for="<?php echo $this->id; ?>"
-			           class="dfp-row-title"><?php printf( __( $this->label, 'dfp-ads' ) ); ?></label></td>
+			<td><label for="<?php echo $this->id; ?>" class="dfp-row-title"><?php printf( __( $this->label, 'dfp-ads' ) ); ?></label></td>
 			<td align="left">
 				<?php
-				switch ( $this->type ) :
+				switch( $this->type ) :
 					// Text Input
 					case 'text' :
 						?>
-						<input type="<?php echo $this->type; ?>" name="<?php echo $this->name; ?>"
-						       id="<?php echo $this->id; ?>" value="<?php $this->field_value( $this->value ); ?>"
-						       size="50"/>
+						<input type="<?php echo $this->type; ?>" name="<?php echo $this->name; ?>" id="<?php echo $this->id; ?>" value="<?php $this->field_value($this->value); ?>" size="50" />
 						<?php
 						break;
 
 					// Text Area
 					case 'textarea' :
 						?>
-						<textarea name="<?php echo $this->name; ?>" id="<?php echo $this->id; ?>" cols="49"
-						          rows="2"><?php echo esc_textarea( $this->get_field_value( $this->value ) ); ?></textarea>
+						<textarea name="<?php echo $this->name; ?>" id="<?php echo $this->id; ?>" cols="49" rows="2"><?php echo esc_textarea( $this->get_field_value( $this->value ) ); ?></textarea>
 						<?php
 						break;
 
 					// Text Area
 					case 'checkbox' :
 						?>
-						<input type="<?php echo $this->type; ?>" name="<?php echo $this->name; ?>"
-						       id="<?php echo $this->id; ?>" <?php checked( $this->value, 1 ); ?> value="1"/>
+						<input type="<?php echo $this->type; ?>" name="<?php echo $this->name; ?>" id="<?php echo $this->id; ?>"<?php checked( $this->value, 1 ); ?> value="1" />
 						<?php
 						break;
 
