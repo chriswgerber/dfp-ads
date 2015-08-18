@@ -257,10 +257,17 @@ Class DFP_Ads {
 	 * @return mixed
 	 */
 	public function scripts_and_styles() {
+		if ( defined( 'DFP_CONCAT_SCRIPTS' ) && true === DFP_CONCAT_SCRIPTS ) {
+			$gads_script_url = $this->dir_uri . '/assets/js/google-ads.min.js';
+			$dfp_ads_script_url = $this->dir_uri . '/assets/js/dfp-ads.min.js';
+		} else {
+			$gads_script_url = $this->dir_uri . '/assets/js/google-ads.js';
+			$dfp_ads_script_url = $this->dir_uri . '/assets/js/dfp-ads.js';
+		}
 		// Google Ads JS Script
 		wp_register_script(
 			$this->google_ad_script_name,
-			$this->dir_uri . '/assets/js/google-ads.min.js',
+			$gads_script_url,
 			array( 'jquery' ),
 			false,
 			false
@@ -273,7 +280,7 @@ Class DFP_Ads {
 		// Preps the script
 		wp_register_script(
 			$this->script_name,
-			$this->dir_uri . '/assets/js/dfp-ads.min.js',
+			$dfp_ads_script_url,
 			array( $this->google_ad_script_name, 'jquery' ),
 			false,
 			false

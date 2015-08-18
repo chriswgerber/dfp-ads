@@ -36,6 +36,10 @@ include 'includes/admin/Import_Form.php';
 include 'includes/admin/Admin.php';
 include 'widget/widget.ad_position.php';
 
+if ( ! defined( 'DFP_CONCAT_SCRIPTS' ) ) {
+	define( 'DFP_CONCAT_SCRIPTS', true );
+}
+
 /* Namespaces */
 use DFP_Ads\DFP_Ads as DFP_Ads;
 use DFP_Ads\Post_Type as DFP_Ads_Post_Type;
@@ -43,6 +47,7 @@ use DFP_Ads\Admin\Input as DFP_Ads_Input;
 use DFP_Ads\Admin\Settings_Form as DFP_Ads_Settings_Form;
 use DFP_Ads\Admin\Import_Form as DFP_Ads_Import_Form;
 use DFP_Ads\Admin as DFP_Ads_Admin;
+
 /*
  * Initialization for Post Type
  */
@@ -156,7 +161,7 @@ if ( is_admin() ) {
 	} ) );
 	/* Section Fields */
 	add_filter( 'dfp_ads_settings_fields', ( function ( $fields ) {
-		$fields['dfp_property_code'] = array(
+		$fields['dfp_property_code']    = array(
 			'id'          => 'dfp_property_code',
 			'field'       => 'text',
 			'callback'    => 'text',
