@@ -15,6 +15,6 @@ cd_plugin_dir ()
          # If $SOURCE was a relative symlink (so no "/" as prefix, need to resolve it relative to the symlink base directory
          [[ $SOURCE != /* ]] && SOURCE="$DIR/$SOURCE"
     done
-    DIR="$( cd -P "$( dirname "$SOURCE" )/../../" && pwd )"
+    DIR="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
     cd $DIR;
 }
