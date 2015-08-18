@@ -85,6 +85,14 @@ Submit your questions at [www.chriswgerber.com/contact/](http://www.chriswgerber
 <a name="Changelog"></a>
 ## Changelog
 
+### 0.3.2
+
+* :new: Adds `DFP_CONCAT_SCRIPTS` constant. Set as `false` to force the plugin to use un-minified scripts
+* :bug::gun: Fixes array issue in javascript that would cause ads to not appear.
+* :cool: Improves build scripts
+* :new: Adds Composer.lock file to force support for PHP 5.3 on all `composer install`
+* :100: Various code quality improvements.
+
 ### 0.3.1
 
 * :bug::gun: Fixes widget not displaying ad position correctly.

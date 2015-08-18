@@ -1,6 +1,6 @@
 === DFP Ad Manager ===
 
-Stable tag: 0.3.1
+Stable tag: 0.3.2
 Contributors: chriswgerber
 Requires at least: 3.0.0
 Tested up to: 4.2.2
@@ -57,6 +57,14 @@ Submit your questions at [chriswgerber.com/contact/](http://www.chriswgerber.com
 Update fixes issue with widget rendering.
 
 == Changelog ==
+
+= 0.3.2 =
+
+* Adds `DFP_CONCAT_SCRIPTS` constant. Set as `false` to force the plugin to use un-minified scripts
+* Fixes array issue in javascript that would cause ads to not appear.
+* Improves build scripts
+* Adds Composer.lock file to force support for PHP 5.3 on all `composer install`
+* Various code quality improvements.
 
 = 0.3.1 =
 
