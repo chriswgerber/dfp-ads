@@ -90,7 +90,7 @@ Abstract Class Form {
 	/**
 	 * Creates input
 	 *
-	 * @TODO Add Labels
+	 * @TODO   Add Labels
 	 *
 	 * @since  0.2.0
 	 * @access public
@@ -122,7 +122,7 @@ Abstract Class Form {
 	/**
 	 * Creates Select Options for widget
 	 *
-	 * @TODO Add Labels
+	 * @TODO   Add Labels
 	 *
 	 * @since  0.2.0
 	 * @access public
@@ -151,7 +151,7 @@ Abstract Class Form {
 	/**
 	 * Creates checkbox input
 	 *
-	 * @TODO Add Labels
+	 * @TODO   Add Labels
 	 *
 	 * @since  0.3.0
 	 * @access public

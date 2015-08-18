@@ -266,7 +266,7 @@ class Admin {
 	/**
 	 * Creates input
 	 *
-	 * @TODO Add Labels
+	 * @TODO   Add Labels
 	 *
 	 * @since  0.0.1
 	 * @access public

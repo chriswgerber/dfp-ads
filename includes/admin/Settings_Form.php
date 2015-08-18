@@ -1,11 +1,11 @@
 <?php
-/** 
+/**
  * Functions for building a form
  *
  * Description.
  *
- * @link  http://www.chriswgerber.com/dfp-ads
- * @since 0.0.1
+ * @link       http://www.chriswgerber.com/dfp-ads
+ * @since      0.0.1
  *
  * @package    WordPress
  * @subpackage DFP-Ads
@@ -17,7 +17,7 @@ class Settings_Form extends Form {
 	/**
 	 * Coagulates the functions into a form on the front-end.
 	 *
-	 * @since 0.0.1
+	 * @since  0.0.1
 	 * @access public
 	 */
 	public function render_form() {

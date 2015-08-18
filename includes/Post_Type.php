@@ -63,7 +63,7 @@ class Post_Type {
 	 * @access public
 	 */
 	public function create_post_type() {
-		$args = $this->get_args();
+		$args           = $this->get_args();
 		$args['labels'] = $this->get_labels();
 
 		register_post_type( $this->name, $args );
@@ -279,13 +279,10 @@ class Post_Type {
 	 */
 	protected $metaboxes = array(
 		array(
-			'id'            => 'ad_pos_settings',
-			'title'         => 'Ad Position Settings',
-			'context'       => 'normal',
-			'priority'      => 'high',
-			//'callback'      => array( $this, 'settings_box' ),
-			//'name'          => $this->name,
-			//'callback_args' => $post->ID
+			'id'       => 'ad_pos_settings',
+			'title'    => 'Ad Position Settings',
+			'context'  => 'normal',
+			'priority' => 'high'
 		)
 	);
 
@@ -353,7 +350,7 @@ class Post_Type {
 	 * @since  0.3.1
 	 * @access private
 	 *
-	 * @param int $post_id
+	 * @param int   $post_id
 	 * @param array $fields Array of \DFP_Ads\Admin\Input
 	 */
 	private function update_meta( $post_id, $fields ) {

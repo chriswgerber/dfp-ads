@@ -190,8 +190,8 @@ Class DFP_Ads {
 			$current_url = $wp->request;
 			$array       = explode( '/', $current_url );
 		} else {
-			$current_url            = $wp->query_string;
-			$url_parts              = explode( '=', $current_url );
+			$current_url = $wp->query_string;
+			$url_parts   = explode( '=', $current_url );
 			if ( count( $url_parts ) >= 2 ) {
 				$array[ $url_parts[0] ] = $url_parts[1];
 			} else {
@@ -258,10 +258,10 @@ Class DFP_Ads {
 	 */
 	public function scripts_and_styles() {
 		if ( defined( 'DFP_CONCAT_SCRIPTS' ) && true === DFP_CONCAT_SCRIPTS ) {
-			$gads_script_url = $this->dir_uri . '/assets/js/google-ads.min.js';
+			$gads_script_url    = $this->dir_uri . '/assets/js/google-ads.min.js';
 			$dfp_ads_script_url = $this->dir_uri . '/assets/js/dfp-ads.min.js';
 		} else {
-			$gads_script_url = $this->dir_uri . '/assets/js/google-ads.js';
+			$gads_script_url    = $this->dir_uri . '/assets/js/google-ads.js';
 			$dfp_ads_script_url = $this->dir_uri . '/assets/js/dfp-ads.js';
 		}
 		// Google Ads JS Script
