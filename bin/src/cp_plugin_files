@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+# Copy files to repo directory
+cp_plugin_files ()
+{
+    DIRECTORY="$1"
+    rm -rf "repo/trunk/$DIRECTORY/" && rsync -av --exclude=".*" $DIRECTORY/ "repo/trunk/$DIRECTORY"
+    # rm -rf "repo/trunk/$DIRECTORY/" && cp -Rpv $DIRECTORY/ "repo/trunk/$DIRECTORY"
+}

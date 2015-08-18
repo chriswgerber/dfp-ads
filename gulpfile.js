@@ -13,7 +13,7 @@ var gulp = require('gulp'),
 
 // Lint Task
 gulp.task('lint', function() {
-  return gulp.src('./assets/js/*.js')
+  return gulp.src('./assets/js/dfp-ads.js')
     .pipe(jshint('.jshintrc'))
     .pipe(jshint.reporter('jshint-stylish'));
 });
