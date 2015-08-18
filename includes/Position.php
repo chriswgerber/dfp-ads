@@ -128,7 +128,7 @@ class Position {
 			$this->ad_name      = $meta['dfp_ad_code'][0];
 			$this->position_tag = strtolower( 'Ad_Pos_' . $this->ad_name );
 			$this->sizes        = dfp_get_ad_sizes( $meta['dfp_position_sizes'][0] );
-			$this->out_of_page  = ( $meta['dfp_out_of_page'][0] ? true : false );
+			$this->out_of_page  = ( isset( $meta['dfp_out_of_page'][0] ) ? true : false );
 		}
 	}
 
