@@ -267,10 +267,7 @@ Class DFP_Ads {
 		// Google Ads JS Script
 		wp_register_script(
 			$this->google_ad_script_name,
-			$gads_script_url,
-			array( 'jquery' ),
-			false,
-			false
+			$gads_script_url
 		);
 		/* Get the Final Ad Positions */
 		$ad_positions = apply_filters( 'pre_dfp_ads_to_js', $this );
@@ -280,10 +277,7 @@ Class DFP_Ads {
 		// Preps the script
 		wp_register_script(
 			$this->script_name,
-			$dfp_ads_script_url,
-			array( $this->google_ad_script_name, 'jquery' ),
-			false,
-			false
+			$dfp_ads_script_url
 		);
 		wp_enqueue_script( $this->script_name );
 	}
